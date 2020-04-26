@@ -1,7 +1,9 @@
 from train_and_save import create_model, checkpoint_path
 from split import split_model
 
-import tensorflow as tf 
+import tensorflow as tf
+
+BATCH_SIZE = 32
 
 mnist = tf.keras.datasets.mnist
 
@@ -14,8 +16,9 @@ def no_split():
     model = create_model()
     model.load_weights(checkpoint_path)
 
-    loss, acc = model.evaluate(x_test,  y_test, verbose=2)
+    loss, acc = model.evaluate(x_test, y_test, verbose=2)
     print('test_loss: {}, test_acc: {}'.format(loss, acc))
+
 
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
@@ -23,22 +26,23 @@ optimizer = tf.keras.optimizers.Adam()
 test_loss = tf.keras.metrics.Mean(name='test_loss')
 test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='test_accuracy')
 
+
 @tf.function
 def test_step(models, images, labels):
-  intermediate_pred = images
-  for model in models:
-      # TODO: this step should be done in separate machines
-      intermediate_pred = model(intermediate_pred)
+    intermediate_pred = images
+    for model in models:
+        # TODO: this step should be done in separate machines
+        intermediate_pred = model(intermediate_pred)
 
-  predictions = intermediate_pred
+    predictions = intermediate_pred
 
-  t_loss = loss_object(labels, predictions)
+    t_loss = loss_object(labels, predictions)
 
-  test_loss(t_loss)
-  test_accuracy(labels, predictions)
+    test_loss(t_loss)
+    test_accuracy(labels, predictions)
+
 
 def split():
-    BATCH_SIZE = 32
     model = create_model()
     model.load_weights(checkpoint_path)
     model.build((BATCH_SIZE, 28, 28, 1))

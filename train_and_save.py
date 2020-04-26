@@ -12,26 +12,30 @@ from tensorflow.keras import Model
 
 checkpoint_path = "model.ckpt"
 
-class MyModel(Model):
-  def __init__(self):
-    super(MyModel, self).__init__()
-    self.conv1 = Conv2D(32, 3, activation='relu')
-    self.flatten = Flatten()
-    self.d1 = Dense(128, activation='relu')
-    self.d2 = Dense(10, activation='softmax')
 
-  def call(self, x):
-    x = self.conv1(x)
-    x = self.flatten(x)
-    x = self.d1(x)
-    return self.d2(x)
+class MyModel(Model):
+    def __init__(self):
+        super(MyModel, self).__init__()
+        self.conv1 = Conv2D(32, 3, activation='relu')
+        self.flatten = Flatten()
+        self.d1 = Dense(128, activation='relu')
+        self.d2 = Dense(10, activation='softmax')
+
+    def call(self, x):
+        x = self.conv1(x)
+        x = self.flatten(x)
+        x = self.d1(x)
+        return self.d2(x)
+
 
 def create_model():
-  model = MyModel()
-  model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
-  return model
+    model = MyModel()
+    model.compile(optimizer='adam',
+                  loss='sparse_categorical_crossentropy',
+                  metrics=['accuracy'])
+    return model
+
+
 # ============================================= #
 
 
@@ -48,7 +52,6 @@ train_ds = tf.data.Dataset.from_tensor_slices(
     (x_train, y_train)).shuffle(10000).batch(32)
 test_ds = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(32)
 
-
 model = create_model()
 
 checkpoint_dir = os.path.dirname(checkpoint_path)
@@ -57,10 +60,9 @@ cp_callback = tf.keras.callbacks.ModelCheckpoint(checkpoint_path,
                                                  save_weights_only=True,
                                                  verbose=1)
 
-    
 if __name__ == '__main__':
-  model.fit(x_train, y_train, epochs = 3,
-          validation_data = (x_test, y_test),
-          callbacks = [cp_callback])
-  
-  model.summary()
+    model.fit(x_train, y_train, epochs=3,
+              validation_data=(x_test, y_test),
+              callbacks=[cp_callback])
+
+    model.summary()

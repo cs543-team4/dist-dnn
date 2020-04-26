@@ -8,12 +8,14 @@ import random
 - Refer to tf.keras.Sequential: https://www.tensorflow.org/guide/keras/overview?hl=ko
 """
 
+
 def construct_model_by_layers(layers):
     model = tf.keras.Sequential()
     for l in layers:
         model.add(l)
 
     return model
+
 
 def split_model(model):
     def _get_splittable_indices(model):
