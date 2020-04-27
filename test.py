@@ -12,14 +12,6 @@ x_test = x_test / 255.0
 x_test = x_test[..., tf.newaxis]
 
 
-def no_split():
-    model = create_model()
-    model.load_weights(checkpoint_path)
-
-    loss, acc = model.evaluate(x_test, y_test, verbose=2)
-    print('test_loss: {}, test_acc: {}'.format(loss, acc))
-
-
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
 
@@ -42,14 +34,19 @@ def test_step(models, images, labels):
     test_accuracy(labels, predictions)
 
 
-def split():
+def run_split():
     model = create_model()
     model.load_weights(checkpoint_path)
-    model.build((BATCH_SIZE, 28, 28, 1))
+    model.build_graph((32, 28, 28, 1))
+    model.summary()
 
     test_ds = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(BATCH_SIZE)
 
     for images, labels in test_ds:
+        s_models = split_model(model)
+        for i in range(len(s_models)):
+            s_models[i].save_weights('./splitted_models/model_{}'.format(i))
+
         test_step(split_model(model), images, labels)
 
     model.summary()
@@ -57,4 +54,4 @@ def split():
 
 
 if __name__ == '__main__':
-    split()
+    run_split()

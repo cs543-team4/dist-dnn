@@ -1,5 +1,8 @@
 import tensorflow as tf
+import numpy as np
+
 import random
+
 
 """
 - Example of layers:
@@ -14,6 +17,7 @@ def construct_model_by_layers(layers):
     for l in layers:
         model.add(l)
 
+    model.build(input_shape=layers[0].input_shape)
     return model
 
 
@@ -25,7 +29,11 @@ def split_model(model):
     splitted_models = []
 
     # For now, just choose random split point
-    i = random.choice(_get_splittable_indices(model))
+    # i = random.choice(_get_splittable_indices(model))
+
+    # Limitation of using checkpoints: should shift to *.pb format
+    # For now, just fix the split point
+    i = 1
 
     splitted_models.append(construct_model_by_layers(layers[:i]))
     splitted_models.append(construct_model_by_layers(layers[i:]))

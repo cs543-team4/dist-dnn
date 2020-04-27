@@ -1,0 +1,200 @@
+ERROR:grpc._server:Exception calling application: Cannot convert value <class 'str'> to a TensorFlow DType.
+Traceback (most recent call last):
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "final_inference.py", line 36, in SendTensor
+    parsed = parse(request.data)
+  File "final_inference.py", line 32, in parse
+    encoded_tensor = tf.convert_to_tensor(message, dtype_hint=str)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/framework/ops.py", line 1256, in convert_to_tensor_v2
+    as_ref=False)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/framework/ops.py", line 1294, in convert_to_tensor
+    preferred_dtype = dtypes.as_dtype(preferred_dtype)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/framework/dtypes.py", line 725, in as_dtype
+    (type_value,))
+TypeError: Cannot convert value <class 'str'> to a TensorFlow DType.
+ERROR:grpc._server:Exception calling application: Cannot convert value <class 'str'> to a TensorFlow DType.
+Traceback (most recent call last):
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "final_inference.py", line 36, in SendTensor
+    parsed = parse(request.data)
+  File "final_inference.py", line 32, in parse
+    encoded_tensor = tf.convert_to_tensor(message)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/framework/ops.py", line 1256, in convert_to_tensor_v2
+    as_ref=False)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/framework/ops.py", line 1294, in convert_to_tensor
+    preferred_dtype = dtypes.as_dtype(preferred_dtype)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/framework/dtypes.py", line 725, in as_dtype
+    (type_value,))
+TypeError: Cannot convert value <class 'str'> to a TensorFlow DType.
+ERROR:grpc._server:Exception calling application: Tensor's shape (21632, 128) is not compatible with supplied shape [832, 128]
+Traceback (most recent call last):
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "final_inference.py", line 37, in SendTensor
+    process_data(parsed)
+  File "final_inference.py", line 60, in process_data
+    submodel.build((26, 26, 32))
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/sequential.py", line 260, in build
+    super(Sequential, self).build(input_shape)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/network.py", line 682, in build
+    self.call(x, **kwargs)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/sequential.py", line 281, in call
+    outputs = layer(inputs, **kwargs)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/base_layer.py", line 748, in __call__
+    self._maybe_build(inputs)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/base_layer.py", line 2116, in _maybe_build
+    self.build(input_shapes)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/layers/core.py", line 1113, in build
+    trainable=True)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/base_layer.py", line 446, in add_weight
+    caching_device=caching_device)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/training/tracking/base.py", line 725, in _add_variable_with_custom_getter
+    name=name, shape=shape)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/training/tracking/base.py", line 792, in _preload_simple_restoration
+    checkpoint_position=checkpoint_position, shape=shape)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/training/tracking/base.py", line 75, in __init__
+    self.wrapped_value.set_shape(shape)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/framework/ops.py", line 1088, in set_shape
+    (self.shape, shape))
+ValueError: Tensor's shape (21632, 128) is not compatible with supplied shape [832, 128]
+WARNING:tensorflow:Unresolved object in checkpoint: (root).layer_with_weights-0.kernel
+WARNING:tensorflow:Unresolved object in checkpoint: (root).layer_with_weights-0.bias
+WARNING:tensorflow:Unresolved object in checkpoint: (root).layer_with_weights-1.kernel
+WARNING:tensorflow:Unresolved object in checkpoint: (root).layer_with_weights-1.bias
+WARNING:tensorflow:A checkpoint was restored (e.g. tf.train.Checkpoint.restore or tf.keras.Model.load_weights) but not all checkpointed values were used. See above for specific issues. Use expect_partial() on the load status object, e.g. tf.train.Checkpoint.restore(...).expect_partial(), to silence these warnings, or use assert_consumed() to make the check explicit. See https://www.tensorflow.org/guide/checkpoint#loading_mechanics for details.
+ERROR:grpc._server:Exception calling application: Tensor's shape (21632, 128) is not compatible with supplied shape [832, 128]
+Traceback (most recent call last):
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "final_inference.py", line 38, in SendTensor
+    process_data(parsed)
+  File "final_inference.py", line 61, in process_data
+    submodel.build((26, 26, 32))
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/sequential.py", line 260, in build
+    super(Sequential, self).build(input_shape)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/network.py", line 682, in build
+    self.call(x, **kwargs)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/sequential.py", line 281, in call
+    outputs = layer(inputs, **kwargs)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/base_layer.py", line 748, in __call__
+    self._maybe_build(inputs)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/base_layer.py", line 2116, in _maybe_build
+    self.build(input_shapes)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/layers/core.py", line 1113, in build
+    trainable=True)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/base_layer.py", line 446, in add_weight
+    caching_device=caching_device)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/training/tracking/base.py", line 725, in _add_variable_with_custom_getter
+    name=name, shape=shape)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/training/tracking/base.py", line 792, in _preload_simple_restoration
+    checkpoint_position=checkpoint_position, shape=shape)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/training/tracking/base.py", line 75, in __init__
+    self.wrapped_value.set_shape(shape)
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow_core/python/framework/ops.py", line 1088, in set_shape
+    (self.shape, shape))
+ValueError: Tensor's shape (21632, 128) is not compatible with supplied shape [832, 128]
+WARNING:tensorflow:Unresolved object in checkpoint: (root).layer_with_weights-0.kernel
+WARNING:tensorflow:Unresolved object in checkpoint: (root).layer_with_weights-0.bias
+WARNING:tensorflow:Unresolved object in checkpoint: (root).layer_with_weights-1.kernel
+WARNING:tensorflow:Unresolved object in checkpoint: (root).layer_with_weights-1.bias
+WARNING:tensorflow:A checkpoint was restored (e.g. tf.train.Checkpoint.restore or tf.keras.Model.load_weights) but not all checkpointed values were used. See above for specific issues. Use expect_partial() on the load status object, e.g. tf.train.Checkpoint.restore(...).expect_partial(), to silence these warnings, or use assert_consumed() to make the check explicit. See https://www.tensorflow.org/guide/checkpoint#loading_mechanics for details.
+INFO:root:predictions: [[1.06316952e-06 1.71472936e-06 1.28558051e-04 1.55093090e-04
+  1.23045581e-07 3.62897623e-07 2.13503479e-10 9.99698997e-01
+  3.93041501e-06 1.01934265e-05]
+ [8.79931918e-07 4.43742657e-03 9.95511711e-01 1.57062266e-06
+  4.69790651e-10 6.35146264e-08 4.80880808e-05 3.47475577e-08
+  1.79834316e-07 9.93442897e-11]
+ [9.80480490e-06 9.99337018e-01 1.44337871e-04 9.58858072e-06
+  6.12851218e-05 6.59812713e-06 2.76209958e-05 3.40587692e-04
+  5.07324366e-05 1.24765847e-05]
+ [9.99714196e-01 5.77414085e-06 6.97988071e-05 1.64793473e-05
+  1.29293801e-06 8.50637389e-06 6.98285730e-05 3.51454437e-05
+  3.70498810e-06 7.51820116e-05]
+ [9.75767398e-06 8.60054661e-06 1.63809891e-05 1.71002898e-06
+  9.98843908e-01 5.27877091e-06 3.63104227e-05 2.91539345e-05
+  1.04959672e-05 1.03831291e-03]
+ [3.31504248e-06 9.99152064e-01 3.29826762e-05 4.93884272e-06
+  3.15035504e-05 1.49164384e-06 4.69618453e-06 7.24809011e-04
+  3.06801157e-05 1.33967733e-05]
+ [6.52158042e-06 1.76567875e-04 1.16284027e-05 1.80103689e-05
+  9.94461715e-01 8.24522576e-05 7.55566225e-06 4.24648286e-04
+  3.71823320e-03 1.09264266e-03]
+ [3.72005729e-06 6.46072498e-04 7.32486442e-05 3.46149644e-03
+  8.57191160e-03 4.84705297e-03 1.37170582e-05 4.96174689e-05
+  4.93863085e-03 9.77394581e-01]
+ [2.78205152e-05 3.59710342e-08 1.91293509e-07 2.14302031e-06
+  9.07154481e-06 9.84089732e-01 1.41453585e-02 4.04799785e-08
+  1.60273304e-03 1.22993253e-04]
+ [4.24309746e-06 1.05342008e-06 1.77378138e-06 8.52220546e-05
+  5.16025349e-04 7.11577968e-06 8.11860801e-09 2.58574192e-03
+  6.88693472e-05 9.96729851e-01]
+ [9.99948621e-01 5.59360336e-09 1.85378558e-05 1.73041066e-08
+  3.98463484e-09 9.36421031e-07 2.29426896e-05 5.13614793e-07
+  3.10715336e-06 5.38680888e-06]
+ [1.60513082e-05 1.29683906e-06 6.26951305e-07 1.70216353e-07
+  6.80025039e-07 4.03689592e-05 9.99938369e-01 2.30245494e-08
+  2.31932313e-06 1.73163201e-07]
+ [4.55044392e-06 9.29658768e-07 9.11894972e-07 1.05212523e-04
+  7.21534831e-04 5.15377433e-05 3.87801364e-08 1.10658708e-04
+  1.35454451e-04 9.98869121e-01]
+ [9.99717176e-01 4.89514846e-08 1.38584130e-06 3.57812375e-08
+  6.04012556e-08 1.05484571e-06 1.08681998e-04 2.70565602e-06
+  1.32722707e-04 3.60424674e-05]
+ [7.19728419e-08 9.99910951e-01 1.51542599e-06 6.54571631e-05
+  4.04203365e-06 1.15885746e-06 1.94206336e-06 2.16228455e-06
+  1.20399254e-05 5.52341703e-07]
+ [5.86888689e-07 3.26438785e-05 5.54977441e-06 1.81719679e-02
+  5.96761041e-09 9.81626630e-01 2.39362889e-05 1.67318776e-05
+  1.21617297e-04 3.50444907e-07]
+ [1.71063657e-05 1.68736385e-08 3.49878110e-06 3.16472651e-05
+  5.46745287e-05 2.05419165e-05 3.99393834e-08 3.56729171e-04
+  1.74362503e-04 9.99341309e-01]
+ [1.74834111e-06 2.56884505e-07 1.99715214e-04 1.13732240e-04
+  6.81329553e-08 7.77711421e-07 1.10699845e-10 9.99671459e-01
+  2.86126664e-07 1.19878268e-05]
+ [7.88252328e-06 2.81834255e-05 1.63779594e-04 9.83703017e-01
+  3.72308386e-05 8.03259388e-03 5.16406253e-05 2.63295606e-05
+  7.78664555e-03 1.62656695e-04]
+ [1.23984961e-07 3.68448377e-06 1.56050518e-07 1.50023098e-07
+  9.99969602e-01 4.98145425e-07 7.03457658e-07 1.19441738e-05
+  1.43800446e-06 1.16248266e-05]
+ [3.30807525e-04 2.36187200e-03 1.05695199e-05 2.52974150e-03
+  4.97442298e-03 1.42037243e-04 6.87852094e-07 5.66704310e-02
+  4.48782812e-04 9.32530582e-01]
+ [3.85758494e-06 7.17603086e-07 8.90495002e-08 9.98993301e-07
+  7.70734914e-06 6.29043579e-03 9.93689656e-01 2.22866969e-08
+  5.13251234e-06 1.32279126e-06]
+ [5.77706123e-05 1.02137910e-05 3.57638100e-07 1.49274101e-07
+  7.75963126e-04 7.10638778e-05 9.99020100e-01 9.25088170e-06
+  6.31021385e-06 4.88134101e-05]
+ [3.83007084e-08 1.22338930e-08 8.35802816e-10 3.55514276e-05
+  1.91458529e-08 9.99951839e-01 7.71949635e-06 5.97197181e-10
+  9.99413942e-07 3.87315731e-06]
+ [5.05626895e-06 1.21142803e-04 1.75449604e-05 6.09704193e-06
+  9.98756051e-01 5.55025290e-05 3.91819958e-05 2.10964310e-04
+  1.57944614e-05 7.72727013e-04]
+ [9.96197462e-01 2.39626274e-07 2.18242480e-04 1.00600698e-06
+  2.86398536e-05 5.39232678e-05 3.43567156e-03 1.95132088e-06
+  4.86562785e-05 1.43095576e-05]
+ [9.94735892e-05 3.33839967e-06 3.73765390e-04 3.50221148e-04
+  1.87863088e-06 1.92536227e-05 2.41471163e-08 9.98490214e-01
+  5.31806063e-06 6.56447432e-04]
+ [1.74249202e-08 1.61746271e-07 7.80458720e-08 7.72428699e-09
+  9.99990106e-01 4.42211210e-08 2.79078449e-08 6.05558228e-07
+  2.24302411e-07 8.69688756e-06]
+ [9.99921083e-01 2.77464977e-07 6.10773204e-05 2.65582207e-06
+  2.36843345e-09 2.58259547e-07 2.78140021e-07 7.26760027e-06
+  5.44797967e-06 1.54130817e-06]
+ [7.57529335e-07 9.99377429e-01 3.76391909e-05 1.06385494e-04
+  3.00733722e-04 1.72126038e-05 7.74038472e-06 8.07277611e-05
+  6.44132451e-05 6.98553640e-06]
+ [2.24028085e-08 2.07489805e-07 1.59009389e-07 9.99918938e-01
+  1.20666837e-08 6.27048303e-06 6.69612477e-10 1.85217471e-06
+  2.06906890e-07 7.22125042e-05]
+ [1.82380536e-05 9.83128846e-01 2.49514036e-04 4.77650930e-04
+  9.57488641e-03 4.02597128e-04 8.51702935e-05 3.37027316e-03
+  1.96963851e-03 7.23156380e-04]]
+INFO:root:labels: [7 2 1 0 4 1 4 9 5 9 0 6 9 0 1 5 9 7 3 4 9 6 6 5 4 0 7 4 0 1 3 1]
+INFO:root:test loss: 0.006083862856030464, test accuracy: 1.0

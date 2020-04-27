@@ -27,6 +27,16 @@ class MyModel(Model):
         x = self.d1(x)
         return self.d2(x)
 
+    def build_graph(self, input_shape): 
+        input_shape_nobatch = input_shape[1:]
+        self.build(input_shape)
+        inputs = tf.keras.Input(shape=input_shape_nobatch)
+        
+        if not hasattr(self, 'call'):
+            raise AttributeError("User should define 'call' method in sub-class model!")
+        
+        _ = self.call(inputs)
+
 
 def create_model():
     model = MyModel()
@@ -53,6 +63,7 @@ train_ds = tf.data.Dataset.from_tensor_slices(
 test_ds = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(32)
 
 model = create_model()
+model.build_graph((32, 28, 28, 1))
 
 checkpoint_dir = os.path.dirname(checkpoint_path)
 
@@ -61,8 +72,7 @@ cp_callback = tf.keras.callbacks.ModelCheckpoint(checkpoint_path,
                                                  verbose=1)
 
 if __name__ == '__main__':
-    model.fit(x_train, y_train, epochs=3,
+    model.fit(x_train, y_train, epochs=1,
               validation_data=(x_test, y_test),
               callbacks=[cp_callback])
-
     model.summary()
