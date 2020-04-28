@@ -34,11 +34,12 @@ def parse(message):
     encoded_tensor = tf.convert_to_tensor(message)
     return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)
 
+def decompress(data)
+    return zlib.decompress(data)
 
 class Transmitter(tensor_pb2_grpc.TransmitterServicer):
     def send_tensor(self, request, context):
-        compressed_parsed = parse(request.data)
-        parsed = zlib.decompress(compressed_parsed)
+        parsed = decompress(parse(request.data))
         process_data(parsed)
         return tensor_pb2.Reply(message='Received Serialized Tensor')
 
