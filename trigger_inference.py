@@ -6,6 +6,7 @@ from tensorflow.keras.layers import Conv2D
 
 import tensor_pb2
 import tensor_pb2_grpc
+import zlib
 
 BATCH_SIZE = 32
 
@@ -34,6 +35,10 @@ def request(data):
         response = stub.SendTensor(tensor_pb2.SerializedTensor(data=data))
     print("Transmitter client received: " + response.message)
 
+def compress(data)
+    compressed_data = zlib.compress(data, 9)
+    return compressed_data
+
 
 def serialize(tensor):
     serialized_string = tf.io.serialize_tensor(tensor)
@@ -50,4 +55,4 @@ if __name__ == '__main__':
 
     images, _ = list(test_ds)[0]
 
-    request(serialize(submodel(images)))
+    request(compress(serialize(submodel(images))))

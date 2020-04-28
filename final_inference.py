@@ -37,7 +37,8 @@ def parse(message):
 
 class Transmitter(tensor_pb2_grpc.TransmitterServicer):
     def send_tensor(self, request, context):
-        parsed = parse(request.data)
+        compressed_parsed = parse(request.data)
+        parsed = zlib.decompress(compressed_parsed)
         process_data(parsed)
         return tensor_pb2.Reply(message='Received Serialized Tensor')
 

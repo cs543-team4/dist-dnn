@@ -1,4 +1,5 @@
 import logging
+import zlib
 from concurrent import futures
 
 import grpc
@@ -23,12 +24,13 @@ def send_output_data(data):
 
 
 def process_data():
-    input_data = recv_input_data()
+    compressed_input_data = recv_input_data()
+    input_data = zlib.decompress(compressed_input_data)
 
     submodel = tf.keras.Sequential()
     submodel.load_weights('./checkpoints/splitted_model')
 
-    send_output_data(submodel(input_data))
+    send_output_data(zlib.compress(submodel(input_data)))
 
 
 if __name__ == '__main__':
