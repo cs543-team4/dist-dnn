@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, Flatten, Conv2D
 
+import numpy as np
 
 from concurrent import futures
 import logging
@@ -30,11 +31,12 @@ test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='test_accuracy')
 
 def parse(message):
     encoded_tensor = tf.convert_to_tensor(message)
-    return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)   
+    return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)
+
+
 class Transmitter(tensor_pb2_grpc.TransmitterServicer):
     def SendTensor(self, request, context):
         parsed = parse(request.data)
-        print(parsed)
         process_data(parsed)
         return tensor_pb2.Reply(message='Received Serialized Tensor')
 
@@ -66,7 +68,7 @@ def process_data(input_data):
     _, labels = list(test_ds)[0]
 
     t_loss = loss_object(labels, predictions)
-    logging.info('predictions: {}'.format(predictions))
+    logging.info('predictions: {}'.format([np.argmax(p) for p in predictions]))
     logging.info('labels: {}'.format(labels))
 
     test_loss(t_loss)

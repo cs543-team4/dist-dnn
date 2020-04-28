@@ -198,3 +198,17 @@ INFO:root:predictions: [[1.06316952e-06 1.71472936e-06 1.28558051e-04 1.55093090
   1.96963851e-03 7.23156380e-04]]
 INFO:root:labels: [7 2 1 0 4 1 4 9 5 9 0 6 9 0 1 5 9 7 3 4 9 6 6 5 4 0 7 4 0 1 3 1]
 INFO:root:test loss: 0.006083862856030464, test accuracy: 1.0
+ERROR:grpc._server:Exception calling application: name 'np' is not defined
+Traceback (most recent call last):
+  File "/Users/juyeonyoon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "final_inference.py", line 38, in SendTensor
+    process_data(parsed)
+  File "final_inference.py", line 69, in process_data
+    logging.info('predictions: {}'.format([np.argmax(p) for p in predictions]))
+  File "final_inference.py", line 69, in <listcomp>
+    logging.info('predictions: {}'.format([np.argmax(p) for p in predictions]))
+NameError: name 'np' is not defined
+INFO:root:predictions: [7, 2, 1, 0, 4, 1, 4, 9, 5, 9, 0, 6, 9, 0, 1, 5, 9, 7, 3, 4, 9, 6, 6, 5, 4, 0, 7, 4, 0, 1, 3, 1]
+INFO:root:labels: [7 2 1 0 4 1 4 9 5 9 0 6 9 0 1 5 9 7 3 4 9 6 6 5 4 0 7 4 0 1 3 1]
+INFO:root:test loss: 0.006083862856030464, test accuracy: 1.0
