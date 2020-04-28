@@ -3,7 +3,6 @@ import numpy as np
 
 import random
 
-
 """
 - Example of layers:
 [<tensorflow.python.keras.layers.convolutional.Conv2D object at 0x15f0ce9d0>, <tensorflow.python.keras.layers.core.Flatten object at 0x15f0ced50>, <tensorflow.python.keras.layers.core.Dense object at 0x15f0ce690>, <tensorflow.python.keras.layers.core.Dense object at 0x15f0ed450>]
@@ -14,8 +13,8 @@ import random
 
 def construct_model_by_layers(layers):
     model = tf.keras.Sequential()
-    for l in layers:
-        model.add(l)
+    for layer in layers:
+        model.add(layer)
 
     model.build(input_shape=layers[0].input_shape)
     return model

@@ -11,7 +11,6 @@ _, (x_test, y_test) = mnist.load_data()
 x_test = x_test / 255.0
 x_test = x_test[..., tf.newaxis]
 
-
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
 

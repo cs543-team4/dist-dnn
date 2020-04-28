@@ -26,6 +26,7 @@ optimizer = tf.keras.optimizers.Adam()
 test_loss = tf.keras.metrics.Mean(name='test_loss')
 test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='test_accuracy')
 
+
 # gRPC server
 # TODO: extend to multiple devices
 
@@ -35,7 +36,7 @@ def parse(message):
 
 
 class Transmitter(tensor_pb2_grpc.TransmitterServicer):
-    def SendTensor(self, request, context):
+    def send_tensor(self, request, context):
         parsed = parse(request.data)
         process_data(parsed)
         return tensor_pb2.Reply(message='Received Serialized Tensor')
@@ -43,12 +44,12 @@ class Transmitter(tensor_pb2_grpc.TransmitterServicer):
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=100), options=[
-          ('grpc.max_send_message_length', 50 * 1024 * 1024),
-          ('grpc.max_receive_message_length', 50 * 1024 * 1024),
-          ('grpc.max_message_length', 50 * 1024 * 1024),
-          ('grpc.max_metadata_size', 16 * 1024 * 1024)
-      ])
-    tensor_pb2_grpc.add_TransmitterServicer_to_server(Transmitter(), server)
+        ('grpc.max_send_message_length', 50 * 1024 * 1024),
+        ('grpc.max_receive_message_length', 50 * 1024 * 1024),
+        ('grpc.max_message_length', 50 * 1024 * 1024),
+        ('grpc.max_metadata_size', 16 * 1024 * 1024)
+    ])
+    tensor_pb2_grpc.add_transmitter_servicer_to_server(Transmitter(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
     server.wait_for_termination()
