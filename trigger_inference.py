@@ -1,12 +1,13 @@
 from __future__ import print_function
 
+import zlib
+
 import grpc
 import tensorflow as tf
 from tensorflow.keras.layers import Conv2D
 
 import tensor_pb2
 import tensor_pb2_grpc
-import zlib
 
 BATCH_SIZE = 32
 
@@ -35,7 +36,8 @@ def request(data):
         response = stub.SendTensor(tensor_pb2.SerializedTensor(data=data))
     print("Transmitter client received: " + response.message)
 
-def compress(data)
+
+def compress(data):
     compressed_data = zlib.compress(data, 9)
     return compressed_data
 
@@ -47,12 +49,12 @@ def serialize(tensor):
 
 
 if __name__ == '__main__':
-    submodel = tf.keras.Sequential()
-    submodel.add(Conv2D(32, 3, activation='relu'))
-    submodel.load_weights('./splitted_models/model_0')
-    submodel.build((32, 28, 28, 1))
-    submodel.summary()
+    sub_model = tf.keras.Sequential()
+    sub_model.add(Conv2D(32, 3, activation='relu'))
+    sub_model.load_weights('./split_models/model_0')
+    sub_model.build((32, 28, 28, 1))
+    sub_model.summary()
 
     images, _ = list(test_ds)[0]
 
-    request(compress(serialize(submodel(images))))
+    request(compress(serialize(sub_model(images))))

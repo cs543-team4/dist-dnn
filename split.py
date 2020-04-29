@@ -1,11 +1,11 @@
 import tensorflow as tf
-import numpy as np
-
-import random
 
 """
 - Example of layers:
-[<tensorflow.python.keras.layers.convolutional.Conv2D object at 0x15f0ce9d0>, <tensorflow.python.keras.layers.core.Flatten object at 0x15f0ced50>, <tensorflow.python.keras.layers.core.Dense object at 0x15f0ce690>, <tensorflow.python.keras.layers.core.Dense object at 0x15f0ed450>]
+[<tensorflow.python.keras.layers.convolutional.Conv2D object at 0x15f0ce9d0>,
+<tensorflow.python.keras.layers.core.Flatten object at 0x15f0ced50>,
+<tensorflow.python.keras.layers.core.Dense object at 0x15f0ce690>,
+<tensorflow.python.keras.layers.core.Dense object at 0x15f0ed450>]
 
 - Refer to tf.keras.Sequential: https://www.tensorflow.org/guide/keras/overview?hl=ko
 """
@@ -25,7 +25,7 @@ def split_model(model):
         return list(range(len(model.layers)))[1:]
 
     layers = model.layers
-    splitted_models = []
+    split_models = []
 
     # For now, just choose random split point
     # i = random.choice(_get_splittable_indices(model))
@@ -34,7 +34,7 @@ def split_model(model):
     # For now, just fix the split point
     i = 1
 
-    splitted_models.append(construct_model_by_layers(layers[:i]))
-    splitted_models.append(construct_model_by_layers(layers[i:]))
+    split_models.append(construct_model_by_layers(layers[:i]))
+    split_models.append(construct_model_by_layers(layers[i:]))
 
-    return splitted_models
+    return split_models

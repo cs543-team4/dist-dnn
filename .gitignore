@@ -202,3 +202,6 @@ dmypy.json
 .pyre/
 
 # End of https://www.gitignore.io/api/python,pycharm
+
+#rpc log
+rpc_server.log

@@ -22,21 +22,24 @@ def recv_input_data():
 def send_output_data(data):
     pass
 
-def compress(data)
+
+def compress(data):
     compressed_data = zlib.compress(data, 9)
     return compressed_data
 
-def decompress(data)
+
+def decompress(data):
     return zlib.decompress(data)
+
 
 def process_data():
     compressed_input_data = recv_input_data()
     input_data = decompress(compressed_input_data)
 
-    submodel = tf.keras.Sequential()
-    submodel.load_weights('./checkpoints/splitted_model')
+    sub_model = tf.keras.Sequential()
+    sub_model.load_weights('./checkpoints/split_model')
 
-    send_output_data(compress(submodel(input_data)))
+    send_output_data(compress(sub_model(input_data)))
 
 
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
-from train_and_save import create_model, checkpoint_path
-from split import split_model
-
 import tensorflow as tf
+
+from split import split_model
+from train_and_save import create_model, checkpoint_path
 
 BATCH_SIZE = 32
 
@@ -20,12 +20,12 @@ test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='test_accuracy')
 
 @tf.function
 def test_step(models, images, labels):
-    intermediate_pred = images
+    intermediate_prediction = images
     for model in models:
         # TODO: this step should be done in separate machines
-        intermediate_pred = model(intermediate_pred)
+        intermediate_prediction = model(intermediate_prediction)
 
-    predictions = intermediate_pred
+    predictions = intermediate_prediction
 
     t_loss = loss_object(labels, predictions)
 
@@ -44,7 +44,7 @@ def run_split():
     for images, labels in test_ds:
         s_models = split_model(model)
         for i in range(len(s_models)):
-            s_models[i].save_weights('./splitted_models/model_{}'.format(i))
+            s_models[i].save_weights('./split_models/model_{}'.format(i))
 
         test_step(split_model(model), images, labels)
 

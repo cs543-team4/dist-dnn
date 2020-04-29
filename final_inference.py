@@ -1,12 +1,12 @@
-import tensorflow as tf
-from tensorflow.keras.layers import Dense, Flatten, Conv2D
-
-import numpy as np
-
-from concurrent import futures
 import logging
+import zlib
+from concurrent import futures
 
 import grpc
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.layers import Dense, Flatten
+
 import tensor_pb2
 import tensor_pb2_grpc
 
@@ -34,8 +34,10 @@ def parse(message):
     encoded_tensor = tf.convert_to_tensor(message)
     return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)
 
-def decompress(data)
+
+def decompress(data):
     return zlib.decompress(data)
+
 
 class Transmitter(tensor_pb2_grpc.TransmitterServicer):
     def send_tensor(self, request, context):
@@ -58,15 +60,15 @@ def serve():
 
 
 def process_data(input_data):
-    submodel = tf.keras.Sequential()
-    submodel.add(Flatten())
-    submodel.add(Dense(128, activation='relu'))
-    submodel.add(Dense(10, activation='softmax'))
-    submodel.load_weights('./splitted_models/model_1')
-    submodel.build((32, 26, 26, 32))
-    submodel.summary()
+    sub_model = tf.keras.Sequential()
+    sub_model.add(Flatten())
+    sub_model.add(Dense(128, activation='relu'))
+    sub_model.add(Dense(10, activation='softmax'))
+    sub_model.load_weights('./split_models/model_1')
+    sub_model.build((32, 26, 26, 32))
+    sub_model.summary()
 
-    predictions = submodel(input_data)
+    predictions = sub_model(input_data)
 
     _, labels = list(test_ds)[0]
 
