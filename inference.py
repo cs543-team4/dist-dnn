@@ -99,7 +99,7 @@ class SubModel():
 
             t_loss = loss_object(labels, self.predictions[i])
             logging.info('predictions: {}'.format(
-                [np.argmax(p) for p in self.predictions]))
+                [np.argmax(p) for p in self.predictions[i]]))
             logging.info('labels: {}'.format(labels))
 
             test_loss(t_loss)
@@ -111,7 +111,7 @@ class SubModel():
         return test_accuracy.result()
 
 
-def request(self, data, server_address='localhost'):
+def request(data, server_address='localhost'):
     with grpc.insecure_channel('{}:50051'.format(server_address), options=[
         ('grpc.max_send_message_length', 50 * 1024 * 1024),
         ('grpc.max_receive_message_length', 50 * 1024 * 1024),
@@ -134,14 +134,20 @@ if __name__ == '__main__':
                         default='./inference_result.log')
 
     args = parser.parse_args()
+    if args.connected_server == None:
+        args.connected_server = []
 
     print('Model Index: ', args.model_index)
     print('Connected Servers: ', args.connected_server)
 
-    if not args.device:
-        logging.basicConfig(
-            filename=args.log_filename, level=logging.INFO)
-        serve(args.connected_server, args.model_index)
+    if args.device:
+        sub_model = tf.keras.models.load_model('./split_models/model_0.h5')
+        sub_model.summary()
 
-    # if device (that sends the input images)
-    # run request
+        images, _ = list(test_ds)[0]
+
+        request(serialize(sub_model(images)))
+
+    logging.basicConfig(
+        filename=args.log_filepath, level=logging.INFO)
+    serve(args.connected_server, args.model_index)
