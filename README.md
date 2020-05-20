@@ -5,7 +5,7 @@ A simulator for deploying a single neural network model into the distributed env
 
 ## Instructions
 
-1. Run `train_and_save.py` to train a full model and save it in HDF5 format.
-2. Run `run_split.py` to generated split models.
-3. Run `final_inference.py` to wait server to generate final predictions.
-4. Run `trigger_inference.py` to start prediction by providing the input.
+1. Run `python train_and_save.py` to train a full model and save it in HDF5 format.
+2. Run `python run_split.py` to generated split models.
+3. Run `python inference.py --model_index 1` to run inference server.
+4. Run `python inference.py --device` to trigger an inference chain from a device.
