@@ -3,13 +3,9 @@ import tensorflow as tf
 from split import split_model
 from train_and_save import create_model
 
-BATCH_SIZE = 32
+import mnist
 
-mnist = tf.keras.datasets.mnist
-
-_, (x_test, y_test) = mnist.load_data()
-x_test = x_test / 255.0
-x_test = x_test[..., tf.newaxis]
+test_ds = mnist.get_test_ds()
 
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
@@ -23,9 +19,6 @@ def run_split():
     model = tf.keras.models.load_model('full_model.h5')
     model.build(input_shape=(None, 28, 28, 1))
     model.summary()
-
-    test_ds = tf.data.Dataset.from_tensor_slices(
-        (x_test, y_test)).batch(BATCH_SIZE)
 
     models = [model]
 
@@ -44,10 +37,14 @@ def run_split():
         test_accuracy(labels, predictions)
 
     models = split_model(model)
+
     for i in range(len(models)):
         models[i].summary()
         models[i].save('./split_models/model_{}.h5'.format(i))
 
+    """
+    verification
+    """
     for images, labels in test_ds:
         test_step(images, labels)
 

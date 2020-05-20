@@ -4,11 +4,7 @@ import tensorflow as tf
 from tensorflow.keras import Model
 from tensorflow.keras.layers import Dense, Flatten, Conv2D
 
-# TODO: use InceptionResNetV2
-
-# [x] step 1: layer-wise split
-# [ ] step 1-1: deploy split models to Docker containers
-# [ ] step 2: operation-level split
+import mnist
 
 
 def create_model():

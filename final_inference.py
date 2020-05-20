@@ -4,12 +4,9 @@ from concurrent import futures
 import grpc
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.layers import Dense, Flatten
 
 import inference_service_pb2
 import inference_service_pb2_grpc
-
-BATCH_SIZE = 32
 
 mnist = tf.keras.datasets.mnist
 
@@ -18,7 +15,7 @@ x_test = x_test / 255.0
 x_test = x_test[..., tf.newaxis]
 
 test_ds = tf.data.Dataset.from_tensor_slices(
-    (x_test, y_test)).batch(BATCH_SIZE)
+    (x_test, y_test)).batch(32)
 
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
