@@ -1,5 +1,4 @@
 import logging
-import zlib
 from concurrent import futures
 
 import grpc
@@ -7,8 +6,8 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, Flatten
 
-import tensor_pb2
-import tensor_pb2_grpc
+import inference_service_pb2
+import inference_service_pb2_grpc
 
 BATCH_SIZE = 32
 
@@ -18,13 +17,15 @@ _, (x_test, y_test) = mnist.load_data()
 x_test = x_test / 255.0
 x_test = x_test[..., tf.newaxis]
 
-test_ds = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(BATCH_SIZE)
+test_ds = tf.data.Dataset.from_tensor_slices(
+    (x_test, y_test)).batch(BATCH_SIZE)
 
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
 
 test_loss = tf.keras.metrics.Mean(name='test_loss')
-test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='test_accuracy')
+test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
+    name='test_accuracy')
 
 
 # gRPC server
@@ -35,15 +36,11 @@ def parse(message):
     return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)
 
 
-def decompress(data):
-    return zlib.decompress(data)
-
-
-class Transmitter(tensor_pb2_grpc.TransmitterServicer):
-    def send_tensor(self, request, context):
-        parsed = decompress(parse(request.data))
+class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
+    def ProcessTensor(self, request, context):
+        parsed = parse(request.data)
         process_data(parsed)
-        return tensor_pb2.Reply(message='Received Serialized Tensor')
+        return inference_service_pb2.Reply(message='Received Serialized Tensor')
 
 
 def serve():
@@ -53,22 +50,22 @@ def serve():
         ('grpc.max_message_length', 50 * 1024 * 1024),
         ('grpc.max_metadata_size', 16 * 1024 * 1024)
     ])
-    tensor_pb2_grpc.add_transmitter_servicer_to_server(Transmitter(), server)
+    inference_service_pb2_grpc.add_InferenceServiceServicer_to_server(
+        InferenceService(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
     server.wait_for_termination()
 
 
 def process_data(input_data):
-    sub_model = tf.keras.Sequential()
-    sub_model.add(Flatten())
-    sub_model.add(Dense(128, activation='relu'))
-    sub_model.add(Dense(10, activation='softmax'))
-    sub_model.load_weights('./split_models/model_1')
-    sub_model.build((32, 26, 26, 32))
-    sub_model.summary()
+    sub_model = tf.keras.models.load_model('./split_models/model_1.h5')
+    input_shape = list(input_data.shape[1:])
+    input_shape.insert(0, None)
+    sub_model.build(input_shape=input_shape)
 
     predictions = sub_model(input_data)
+
+    sub_model.summary()
 
     _, labels = list(test_ds)[0]
 
@@ -79,7 +76,8 @@ def process_data(input_data):
     test_loss(t_loss)
     test_accuracy(labels, predictions)
 
-    logging.info('test loss: {}, test accuracy: {}'.format(test_loss.result(), test_accuracy.result()))
+    logging.info('test loss: {}, test accuracy: {}'.format(
+        test_loss.result(), test_accuracy.result()))
 
 
 if __name__ == '__main__':

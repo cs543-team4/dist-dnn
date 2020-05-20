@@ -10,36 +10,16 @@ from tensorflow.keras.layers import Dense, Flatten, Conv2D
 # [ ] step 1-1: deploy split models to Docker containers
 # [ ] step 2: operation-level split
 
-checkpoint_path = "model.ckpt"
-
-
-class MyModel(Model):
-    def __init__(self):
-        super(MyModel, self).__init__()
-        self.conv1 = Conv2D(32, 3, activation='relu')
-        self.flatten = Flatten()
-        self.d1 = Dense(128, activation='relu')
-        self.d2 = Dense(10, activation='softmax')
-
-    def call(self, x):
-        x = self.conv1(x)
-        x = self.flatten(x)
-        x = self.d1(x)
-        return self.d2(x)
-
-    def build_graph(self, input_shape):
-        input_shape_nobatch = input_shape[1:]
-        self.build(input_shape)
-        inputs = tf.keras.Input(shape=input_shape_nobatch)
-
-        if not hasattr(self, 'call'):
-            raise AttributeError("User should define 'call' method in sub-class model!")
-
-        _ = self.call(inputs)
-
 
 def create_model():
-    model = MyModel()
+    model = tf.keras.Sequential()
+    # 64개의 유닛을 가진 완전 연결 층을 모델에 추가합니다:
+    model.add(Conv2D(32, 3, input_shape=(28, 28, 1), activation='relu'))
+    # 또 하나를 추가합니다:
+    model.add(Flatten())
+    # 10개의 출력 유닛을 가진 소프트맥스 층을 추가합니다:
+    model.add(Dense(128, activation='relu'))
+    model.add(Dense(10, activation='softmax'))
     model.compile(optimizer='adam',
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
@@ -58,21 +38,11 @@ x_train, x_test = x_train / 255.0, x_test / 255.0
 x_train = x_train[..., tf.newaxis]
 x_test = x_test[..., tf.newaxis]
 
-train_ds = tf.data.Dataset.from_tensor_slices(
-    (x_train, y_train)).shuffle(10000).batch(32)
-test_ds = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(32)
-
 model = create_model()
-model.build_graph((32, 28, 28, 1))
-
-checkpoint_dir = os.path.dirname(checkpoint_path)
-
-cp_callback = tf.keras.callbacks.ModelCheckpoint(checkpoint_path,
-                                                 save_weights_only=True,
-                                                 verbose=1)
 
 if __name__ == '__main__':
     model.fit(x_train, y_train, epochs=1,
-              validation_data=(x_test, y_test),
-              callbacks=[cp_callback])
+              validation_data=(x_test, y_test))
+
+    model.save('full_model.h5')
     model.summary()

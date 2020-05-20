@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option cc_enable_arenas = true;
+
+// Tensor data transmitter
+service InferenceService {
+  rpc ProcessTensor (SerializedTensor) returns (Reply) {}
+}
+message SerializedTensor {
+  string data = 1;
+}
+
+message Reply {
+  string message = 1;
+}

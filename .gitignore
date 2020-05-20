@@ -19,6 +19,7 @@ __pycache__
 checkpoint
 model.ckpt*
 tmp
+*.h5
 
 # Generated files
 .idea/**/contentModel.xml

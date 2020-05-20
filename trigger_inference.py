@@ -1,13 +1,11 @@
 from __future__ import print_function
 
-import zlib
-
 import grpc
 import tensorflow as tf
 from tensorflow.keras.layers import Conv2D
 
-import tensor_pb2
-import tensor_pb2_grpc
+import inference_service_pb2
+import inference_service_pb2_grpc
 
 BATCH_SIZE = 32
 
@@ -17,7 +15,8 @@ _, (x_test, y_test) = mnist.load_data()
 x_test = x_test / 255.0
 x_test = x_test[..., tf.newaxis]
 
-test_ds = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(BATCH_SIZE)
+test_ds = tf.data.Dataset.from_tensor_slices(
+    (x_test, y_test)).batch(BATCH_SIZE)
 
 
 # gRPC client (request next inference with intermediate result)
@@ -32,14 +31,10 @@ def request(data):
         ('grpc.max_message_length', 50 * 1024 * 1024),
         ('grpc.max_metadata_size', 16 * 1024 * 1024)
     ]) as channel:
-        stub = tensor_pb2_grpc.TransmitterStub(channel)
-        response = stub.SendTensor(tensor_pb2.SerializedTensor(data=data))
-    print("Transmitter client received: " + response.message)
-
-
-def compress(data):
-    compressed_data = zlib.compress(data, 9)
-    return compressed_data
+        stub = inference_service_pb2_grpc.InferenceServiceStub(channel)
+        response = stub.ProcessTensor(
+            inference_service_pb2.SerializedTensor(data=data))
+    print("InferenceService client received: " + response.message)
 
 
 def serialize(tensor):
@@ -49,12 +44,9 @@ def serialize(tensor):
 
 
 if __name__ == '__main__':
-    sub_model = tf.keras.Sequential()
-    sub_model.add(Conv2D(32, 3, activation='relu'))
-    sub_model.load_weights('./split_models/model_0')
-    sub_model.build((32, 28, 28, 1))
+    sub_model = tf.keras.models.load_model('./split_models/model_0.h5')
     sub_model.summary()
 
     images, _ = list(test_ds)[0]
 
-    request(compress(serialize(sub_model(images))))
+    request(serialize(sub_model(images)))
