@@ -6,20 +6,28 @@ option cc_enable_arenas = true;
 
 // Tensor data transmitter
 service InferenceService {
-  rpc ProcessTensor (SerializedTensor) returns (Reply) {}
-  rpc test_process (testData) returns (google.protobuf.Empty) {}
+  rpc process_tensor (SerializedTensor) returns (Reply) {}
+  rpc test_process (testData) returns (timeData) {}
+  rpc split_model (slicingData) returns (google.protobuf.Empty) {}
 }
 
 message SerializedTensor {
   string data = 1;
 }
 
-message testData {
-  string data = 1;
-  string name = 2;
-  string model = 3;
-}
-
 message Reply {
   string message = 1;
+}
+
+message testData {
+  string data = 1;
+}
+
+message timeData {
+  repeated double time = 1;
+}
+
+message slicingData {
+  int64 start = 1;
+  int64 end = 2;
 }
