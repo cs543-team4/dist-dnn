@@ -1,5 +1,6 @@
-import tensorflow as tf
 import random
+
+import tensorflow as tf
 
 """
 - Example of layers:

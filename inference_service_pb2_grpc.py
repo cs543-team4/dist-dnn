@@ -15,10 +15,10 @@ class InferenceServiceStub(object):
             channel: A grpc.Channel.
         """
         self.ProcessTensor = channel.unary_unary(
-                '/tensorflow.InferenceService/ProcessTensor',
-                request_serializer=inference__service__pb2.SerializedTensor.SerializeToString,
-                response_deserializer=inference__service__pb2.Reply.FromString,
-                )
+            '/tensorflow.InferenceService/ProcessTensor',
+            request_serializer=inference__service__pb2.SerializedTensor.SerializeToString,
+            response_deserializer=inference__service__pb2.Reply.FromString,
+        )
 
 
 class InferenceServiceServicer(object):
@@ -31,37 +31,47 @@ class InferenceServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def test_process(self, request, context):
+        """Missing associated documentation comment in .proto file"""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_InferenceServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'ProcessTensor': grpc.unary_unary_rpc_method_handler(
-                    servicer.ProcessTensor,
-                    request_deserializer=inference__service__pb2.SerializedTensor.FromString,
-                    response_serializer=inference__service__pb2.Reply.SerializeToString,
-            ),
+        'ProcessTensor': grpc.unary_unary_rpc_method_handler(
+            servicer.ProcessTensor,
+            request_deserializer=inference__service__pb2.SerializedTensor.FromString,
+            response_serializer=inference__service__pb2.Reply.SerializeToString,
+        ),
+        'test_process': grpc.unary_unary_rpc_method_handler(
+            servicer.test_process,
+            request_deserializer=inference__service__pb2.testData.FromString
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'tensorflow.InferenceService', rpc_method_handlers)
+        'tensorflow.InferenceService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class InferenceService(object):
     """Tensor data transmitter
     """
 
     @staticmethod
     def ProcessTensor(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                      target,
+                      options=(),
+                      channel_credentials=None,
+                      call_credentials=None,
+                      compression=None,
+                      wait_for_ready=None,
+                      timeout=None,
+                      metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tensorflow.InferenceService/ProcessTensor',
-            inference__service__pb2.SerializedTensor.SerializeToString,
-            inference__service__pb2.Reply.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+                                             inference__service__pb2.SerializedTensor.SerializeToString,
+                                             inference__service__pb2.Reply.FromString,
+                                             options, channel_credentials,
+                                             call_credentials, compression, wait_for_ready, timeout, metadata)

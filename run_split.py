@@ -1,9 +1,7 @@
 import tensorflow as tf
 
-from split import split_model
-from train_and_save import create_model
-
 import mnist
+from split import split_model
 
 test_ds = mnist.get_test_ds()
 

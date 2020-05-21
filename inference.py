@@ -1,7 +1,8 @@
 # Run as both RPC server + client
 
-import logging
 import argparse
+import logging
+import time
 from concurrent import futures
 
 import grpc
@@ -10,13 +11,11 @@ import tensorflow as tf
 
 import inference_service_pb2
 import inference_service_pb2_grpc
-
 import mnist
 
 """
 Test dataset for verification
 """
-
 
 test_ds = mnist.get_test_ds()
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
@@ -51,11 +50,28 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
         result = self.model.process_data(parsed)
         if len(self.connected_servers) == 0:
             accuracy = self.model.validate_predictions()
-            return inference_service_pb2.Reply(message='Received serialized tensor (current accuracy {}%)'.format(accuracy * 100))
+            return inference_service_pb2.Reply(
+                message='Received serialized tensor (current accuracy {}%)'.format(accuracy * 100))
         else:
             next_server_address = self._choose_next_server(
                 self.connected_servers)
             request(serialize(result), next_server_address)
+
+    def test_process(self, request, context):
+        name = parse(request.name)
+        model = parse(request.model)
+        data = parse(request.data)
+
+        intermediate_prediction = data
+        f = open('{}.txt'.format(name), 'w')
+        for i, layer in enumerate(model.layers):
+            single_layer_model = tf.keras.Sequential()
+            single_layer_model.add(layer)
+
+            start = time.time()
+            intermediate_prediction = model(intermediate_prediction)
+            time_delta = time.time() - start
+            f.write(str(i) + '\t' + str(time_delta))
 
 
 def parse(message):
@@ -69,7 +85,7 @@ def serialize(tensor):
     return serialized_string.numpy()
 
 
-class SubModel():
+class SubModel:
     def __init__(self, model_index=0):
         self.predictions = []
         self.pred_index = 0
@@ -94,7 +110,7 @@ class SubModel():
         test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
             name='test_accuracy')
         for i, (_, labels) in enumerate(test_ds):
-            if (i >= self.pred_index):
+            if i >= self.pred_index:
                 break
 
             t_loss = loss_object(labels, self.predictions[i])

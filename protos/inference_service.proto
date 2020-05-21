@@ -1,13 +1,23 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
+
 option cc_enable_arenas = true;
 
 // Tensor data transmitter
 service InferenceService {
   rpc ProcessTensor (SerializedTensor) returns (Reply) {}
+  rpc test_process (testData) returns (google.protobuf.Empty) {}
 }
+
 message SerializedTensor {
   string data = 1;
+}
+
+message testData {
+  string data = 1;
+  string name = 2;
+  string model = 3;
 }
 
 message Reply {
