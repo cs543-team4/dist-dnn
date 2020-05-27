@@ -15,13 +15,10 @@ test_loss = tf.keras.metrics.Mean(name='test_loss')
 test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
     name='test_accuracy')
 
-
 test_ds = tf.data.Dataset.from_tensor_slices(
     (x_test, y_test)).batch(BATCH_SIZE)
 
-
 if __name__ == '__main__':
-    sub_model1 = tf.keras.Sequential()
     sub_model1 = tf.keras.models.load_model('./split_models/model_0.h5')
     sub_model1.summary()
 
@@ -31,6 +28,7 @@ if __name__ == '__main__':
     models = [sub_model1, sub_model2]
 
     images, labels = list(test_ds)[0]
+
 
     @tf.function
     def test_step(images, labels):
@@ -45,6 +43,7 @@ if __name__ == '__main__':
 
         test_loss(t_loss)
         test_accuracy(labels, predictions)
+
 
     for images, labels in test_ds:
         test_step(images, labels)

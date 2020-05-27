@@ -1,10 +1,5 @@
-import os
-
 import tensorflow as tf
-from tensorflow.keras import Model
 from tensorflow.keras.layers import Dense, Flatten, Conv2D
-
-import mnist
 
 
 def create_model():
