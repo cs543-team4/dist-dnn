@@ -128,7 +128,7 @@ class SubModel:
     def split_model(self, start, end):
         layers = self.model.layers
         split_model = tf.keras.Sequential()
-        for layer in layers[start:end]:
+        for layer in layers[start:end+1]:
             split_model.add(layer)
 
         split_model.build(input_shape=layers[0].input_shape)
@@ -163,12 +163,9 @@ if __name__ == '__main__':
     print('Connected Servers: ', args.connected_server)
 
     if args.device:
-        sub_model = tf.keras.models.load_model('full_model.h5')
-        sub_model.summary()
-
         images, _ = list(test_ds)[0]
 
-        request_next_tensor(serialize(sub_model(images)))
+        request_next_tensor(serialize(images))
 
     logging.basicConfig(
         filename=args.log_filepath, level=logging.INFO)

@@ -17,7 +17,7 @@ test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
 
 # TODO: split algorithm based on the time
 def get_best_split_point(server_times):
-    return []
+    return [[0, 1], [2, 3]]
 
 
 def run_split():
