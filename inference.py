@@ -165,7 +165,7 @@ if __name__ == '__main__':
     if args.device:
         images, _ = list(test_ds)[0]
 
-        request_next_tensor(serialize(images))
+        request_next_tensor(serialize(tf.cast(images, dtype=tf.float32, name=None)))
 
     logging.basicConfig(
         filename=args.log_filepath, level=logging.INFO)

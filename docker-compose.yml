@@ -1,0 +1,18 @@
+version: '3'
+services:
+    device:
+        container_name: device
+        build: .
+        # tty: true
+        # cap_add:
+        # - NET_ADMIN
+        command: >
+            /bin/bash -c "python inference.py --device" 
+        
+    server_1:
+        container_name: server_1
+        build: .
+        command: >
+            /bin/bash -c "python inference.py"
+
+# TODO: run_server daemon: should know about other's IP addresses

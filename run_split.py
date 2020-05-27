@@ -29,28 +29,11 @@ def run_split():
 
     best_point = get_best_split_point(server_times)
 
-    for i, server in enumerate(connected_server):
-        request_split(best_point[i][0], best_point[i][1], server)
-
-    @tf.function
-    def test_step(images, labels):
-        pass
-        #
-        # predictions = intermediate_prediction
-        #
-        # t_loss = loss_object(labels, predictions)
-        #
-        # test_loss(t_loss)
-        # test_accuracy(labels, predictions)
-
-    """
-    verification
-    """
-    for images, labels in test_ds:
-        test_step(images, labels)
-
-    print('test_loss: {}, test_accuracy: {}'.format(
-        test_loss.result(), test_accuracy.result()))
+    for level, server in enumerate(connected_server):
+        start, end = best_point[level]
+        request_split(start, end, server)
+        print("Level [{}] Layers from {} to {}".format(level, start, end))
+        print("Server Address: {}".format)
 
 
 def request_test(data, server_address='localhost'):
