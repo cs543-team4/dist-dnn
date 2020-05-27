@@ -160,7 +160,6 @@ if __name__ == '__main__':
     if args.connected_server is None:
         args.connected_server = []
 
-    print('Model Index: ', args.model_index)
     print('Connected Servers: ', args.connected_server)
 
     if args.device:
