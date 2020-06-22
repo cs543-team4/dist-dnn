@@ -1,11 +1,14 @@
 import grpc
 import tensorflow as tf
 
+from tensor_utils import serialize, parse
+
 import inference_service_pb2
 import inference_service_pb2_grpc
 import mnist
 
 test_ds = mnist.get_test_ds()
+sample_images, _ = list(test_ds)[0]
 
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
@@ -14,6 +17,7 @@ test_loss = tf.keras.metrics.Mean(name='test_loss')
 test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
     name='test_accuracy')
 
+connected_server = [['localhost']]
 
 def get_best_split_point(server_times):
     number_of_layers = len(server_times[0][0])
@@ -67,7 +71,8 @@ def run_split():
     for server_pipeline in connected_server:
         pipeline_times = []
         for server in server_pipeline:
-            server_time = request_test(1, server)
+            print('server to request test: ', server)
+            server_time = request_test(serialize(tf.cast(sample_images, dtype=tf.float32, name=None)), server)
             pipeline_times.append(server_time)
         server_times.append(pipeline_times)
 
@@ -102,9 +107,9 @@ def request_split(start, end, server_address='localhost'):
     ]) as channel:
         stub = inference_service_pb2_grpc.InferenceServiceStub(channel)
         response = stub.split_model(inference_service_pb2.slicingData(start=start, end=end))
+        print('request split response: ', response)
         return response.message
 
 
 if __name__ == '__main__':
-    connected_server = []
     run_split()

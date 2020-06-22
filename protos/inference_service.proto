@@ -1,14 +1,12 @@
 syntax = "proto3";
 
-import "google/protobuf/empty.proto";
-
 option cc_enable_arenas = true;
 
 // Tensor data transmitter
 service InferenceService {
   rpc process_tensor (SerializedTensor) returns (Reply) {}
   rpc test_process (testData) returns (timeData) {}
-  rpc split_model (slicingData) returns (google.protobuf.Empty) {}
+  rpc split_model (slicingData) returns (Reply) {}
 }
 
 message SerializedTensor {

@@ -3,23 +3,26 @@
 # source: inference_service.proto
 
 from google.protobuf import descriptor as _descriptor
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
-
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
+
+
+
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='inference_service.proto',
   package='',
   syntax='proto3',
   serialized_options=b'\370\001\001',
-  serialized_pb=b'\n\x17inference_service.proto\x1a\x1bgoogle/protobuf/empty.proto\" \n\x10SerializedTensor\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\x18\n\x05Reply\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x18\n\x08testData\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\x18\n\x08timeData\x12\x0c\n\x04time\x18\x01 \x03(\x01\")\n\x0bslicingData\x12\r\n\x05start\x18\x01 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x02 \x01(\x03\x32\xa0\x01\n\x10InferenceService\x12-\n\x0eprocess_tensor\x12\x11.SerializedTensor\x1a\x06.Reply\"\x00\x12&\n\x0ctest_process\x12\t.testData\x1a\t.timeData\"\x00\x12\x35\n\x0bsplit_model\x12\x0c.slicingData\x1a\x16.google.protobuf.Empty\"\x00\x42\x03\xf8\x01\x01\x62\x06proto3'
-  ,
-  dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR, ])
+  serialized_pb=b'\n\x17inference_service.proto\" \n\x10SerializedTensor\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\x18\n\x05Reply\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x18\n\x08testData\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\x18\n\x08timeData\x12\x0c\n\x04time\x18\x01 \x03(\x01\")\n\x0bslicingData\x12\r\n\x05start\x18\x01 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x02 \x01(\x03\x32\x90\x01\n\x10InferenceService\x12-\n\x0eprocess_tensor\x12\x11.SerializedTensor\x1a\x06.Reply\"\x00\x12&\n\x0ctest_process\x12\t.testData\x1a\t.timeData\"\x00\x12%\n\x0bsplit_model\x12\x0c.slicingData\x1a\x06.Reply\"\x00\x42\x03\xf8\x01\x01\x62\x06proto3'
+)
+
+
+
 
 _SERIALIZEDTENSOR = _descriptor.Descriptor(
   name='SerializedTensor',
@@ -47,9 +50,10 @@ _SERIALIZEDTENSOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=56,
-  serialized_end=88,
+  serialized_start=27,
+  serialized_end=59,
 )
+
 
 _REPLY = _descriptor.Descriptor(
   name='Reply',
@@ -77,9 +81,10 @@ _REPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=90,
-  serialized_end=114,
+  serialized_start=61,
+  serialized_end=85,
 )
+
 
 _TESTDATA = _descriptor.Descriptor(
   name='testData',
@@ -107,9 +112,10 @@ _TESTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=116,
-  serialized_end=140,
+  serialized_start=87,
+  serialized_end=111,
 )
+
 
 _TIMEDATA = _descriptor.Descriptor(
   name='timeData',
@@ -137,9 +143,10 @@ _TIMEDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=142,
-  serialized_end=166,
+  serialized_start=113,
+  serialized_end=137,
 )
+
 
 _SLICINGDATA = _descriptor.Descriptor(
   name='slicingData',
@@ -174,8 +181,8 @@ _SLICINGDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=168,
-  serialized_end=209,
+  serialized_start=139,
+  serialized_end=180,
 )
 
 DESCRIPTOR.message_types_by_name['SerializedTensor'] = _SERIALIZEDTENSOR
@@ -186,39 +193,40 @@ DESCRIPTOR.message_types_by_name['slicingData'] = _SLICINGDATA
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SerializedTensor = _reflection.GeneratedProtocolMessageType('SerializedTensor', (_message.Message,), {
-  'DESCRIPTOR': _SERIALIZEDTENSOR,
-  '__module__': 'inference_service_pb2'
+  'DESCRIPTOR' : _SERIALIZEDTENSOR,
+  '__module__' : 'inference_service_pb2'
   # @@protoc_insertion_point(class_scope:SerializedTensor)
-})
+  })
 _sym_db.RegisterMessage(SerializedTensor)
 
 Reply = _reflection.GeneratedProtocolMessageType('Reply', (_message.Message,), {
-  'DESCRIPTOR': _REPLY,
-  '__module__': 'inference_service_pb2'
+  'DESCRIPTOR' : _REPLY,
+  '__module__' : 'inference_service_pb2'
   # @@protoc_insertion_point(class_scope:Reply)
-})
+  })
 _sym_db.RegisterMessage(Reply)
 
 testData = _reflection.GeneratedProtocolMessageType('testData', (_message.Message,), {
-  'DESCRIPTOR': _TESTDATA,
-  '__module__': 'inference_service_pb2'
+  'DESCRIPTOR' : _TESTDATA,
+  '__module__' : 'inference_service_pb2'
   # @@protoc_insertion_point(class_scope:testData)
-})
+  })
 _sym_db.RegisterMessage(testData)
 
 timeData = _reflection.GeneratedProtocolMessageType('timeData', (_message.Message,), {
-  'DESCRIPTOR': _TIMEDATA,
-  '__module__': 'inference_service_pb2'
+  'DESCRIPTOR' : _TIMEDATA,
+  '__module__' : 'inference_service_pb2'
   # @@protoc_insertion_point(class_scope:timeData)
-})
+  })
 _sym_db.RegisterMessage(timeData)
 
 slicingData = _reflection.GeneratedProtocolMessageType('slicingData', (_message.Message,), {
-  'DESCRIPTOR': _SLICINGDATA,
-  '__module__': 'inference_service_pb2'
+  'DESCRIPTOR' : _SLICINGDATA,
+  '__module__' : 'inference_service_pb2'
   # @@protoc_insertion_point(class_scope:slicingData)
-})
+  })
 _sym_db.RegisterMessage(slicingData)
+
 
 DESCRIPTOR._options = None
 
@@ -228,37 +236,37 @@ _INFERENCESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=212,
-  serialized_end=372,
+  serialized_start=183,
+  serialized_end=327,
   methods=[
-    _descriptor.MethodDescriptor(
-      name='process_tensor',
-      full_name='InferenceService.process_tensor',
-      index=0,
-      containing_service=None,
-      input_type=_SERIALIZEDTENSOR,
-      output_type=_REPLY,
-      serialized_options=None,
-    ),
-    _descriptor.MethodDescriptor(
-      name='test_process',
-      full_name='InferenceService.test_process',
-      index=1,
-      containing_service=None,
-      input_type=_TESTDATA,
-      output_type=_TIMEDATA,
-      serialized_options=None,
-    ),
-    _descriptor.MethodDescriptor(
-      name='split_model',
-      full_name='InferenceService.split_model',
-      index=2,
-      containing_service=None,
-      input_type=_SLICINGDATA,
-      output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
-      serialized_options=None,
-    ),
-  ])
+  _descriptor.MethodDescriptor(
+    name='process_tensor',
+    full_name='InferenceService.process_tensor',
+    index=0,
+    containing_service=None,
+    input_type=_SERIALIZEDTENSOR,
+    output_type=_REPLY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='test_process',
+    full_name='InferenceService.test_process',
+    index=1,
+    containing_service=None,
+    input_type=_TESTDATA,
+    output_type=_TIMEDATA,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='split_model',
+    full_name='InferenceService.split_model',
+    index=2,
+    containing_service=None,
+    input_type=_SLICINGDATA,
+    output_type=_REPLY,
+    serialized_options=None,
+  ),
+])
 _sym_db.RegisterServiceDescriptor(_INFERENCESERVICE)
 
 DESCRIPTOR.services_by_name['InferenceService'] = _INFERENCESERVICE

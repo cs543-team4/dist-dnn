@@ -9,6 +9,8 @@ import grpc
 import numpy as np
 import tensorflow as tf
 
+from tensor_utils import parse, serialize
+
 import inference_service_pb2
 import inference_service_pb2_grpc
 import mnist
@@ -57,11 +59,15 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
                 self.connected_servers)
             request_next_tensor(serialize(result), next_server_address)
 
+            return inference_service_pb2.Reply(
+                message='Received serialized tensor')
+
     def test_process(self, request, context):
         data = request.data
-        intermediate_prediction = data
+        intermediate_prediction = parse(data)
+        print('parsed data type: ', type(intermediate_prediction))
         response = inference_service_pb2.timeData()
-        for i, layer in enumerate(self.model.model.layers):
+        for layer in self.model.model.layers:
             single_layer_model = tf.keras.Sequential()
             single_layer_model.add(layer)
             single_layer_model.build(input_shape=layer.input_shape)
@@ -71,6 +77,7 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
             time_delta = time.time() - start
             response.time.extend([time_delta])
 
+        print(response.time)
         return response
 
     def split_model(self, request, context):
@@ -78,17 +85,8 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
         end = request.end
 
         self.model.split_model(start, end)
-
-
-def parse(message):
-    encoded_tensor = tf.convert_to_tensor(message)
-    return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)
-
-
-def serialize(tensor):
-    serialized_string = tf.io.serialize_tensor(tensor)
-    serialized_string = tf.io.encode_base64(serialized_string)
-    return serialized_string.numpy()
+        return inference_service_pb2.Reply(
+                message='split completed')
 
 
 class SubModel:
