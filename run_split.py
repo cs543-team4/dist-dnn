@@ -17,7 +17,7 @@ test_loss = tf.keras.metrics.Mean(name='test_loss')
 test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
     name='test_accuracy')
 
-connected_server = [['localhost']]
+connected_server = [[('localhost', 50051), ('localhost', 50052)]]
 
 def get_best_split_point(server_times):
     number_of_layers = len(server_times[0][0])
@@ -70,24 +70,23 @@ def run_split():
     # TODO: how can we serialize the data?
     for server_pipeline in connected_server:
         pipeline_times = []
-        for server in server_pipeline:
-            print('server to request test: ', server)
-            server_time = request_test(serialize(tf.cast(sample_images, dtype=tf.float32, name=None)), server)
+        for server, port in server_pipeline:
+            server_time = request_test(serialize(tf.cast(sample_images, dtype=tf.float32, name=None)), server, port)
             pipeline_times.append(server_time)
         server_times.append(pipeline_times)
 
     best_point = get_best_split_point(server_times)
 
     for pipeline, server_pipeline in enumerate(connected_server):
-        for level, server in enumerate(server_pipeline):
+        for level, (server, port) in enumerate(server_pipeline):
             start, end = best_point[pipeline][level]
-            request_split(start, end, server)
+            request_split(start, end, server, port)
             print("Level [{}] Layers from {} to {}".format(level, start, end))
             print("Server Address: {}".format)
 
 
-def request_test(data, server_address='localhost'):
-    with grpc.insecure_channel('{}:50051'.format(server_address), options=[
+def request_test(data, server_address='localhost', port=50051):
+    with grpc.insecure_channel('{}:{}'.format(server_address, port), options=[
         ('grpc.max_send_message_length', 50 * 1024 * 1024),
         ('grpc.max_receive_message_length', 50 * 1024 * 1024),
         ('grpc.max_message_length', 50 * 1024 * 1024),
@@ -98,8 +97,8 @@ def request_test(data, server_address='localhost'):
         return response.time
 
 
-def request_split(start, end, server_address='localhost'):
-    with grpc.insecure_channel('{}:50051'.format(server_address), options=[
+def request_split(start, end, server_address='localhost', port=50051):
+    with grpc.insecure_channel('{}:{}'.format(server_address, port), options=[
         ('grpc.max_send_message_length', 50 * 1024 * 1024),
         ('grpc.max_receive_message_length', 50 * 1024 * 1024),
         ('grpc.max_message_length', 50 * 1024 * 1024),

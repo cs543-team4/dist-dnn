@@ -24,7 +24,7 @@ loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
 
 
-def serve(connected_servers):
+def serve(connected_servers, port):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=100), options=[
         ('grpc.max_send_message_length', 50 * 1024 * 1024),
         ('grpc.max_receive_message_length', 50 * 1024 * 1024),
@@ -33,7 +33,7 @@ def serve(connected_servers):
     ])
     inference_service_pb2_grpc.add_InferenceServiceServicer_to_server(
         InferenceService(connected_servers), server)
-    server.add_insecure_port('[::]:50051')
+    server.add_insecure_port('[::]:{}'.format(port))
     server.start()
     server.wait_for_termination()
 
@@ -134,8 +134,8 @@ class SubModel:
         self.model = split_model
 
 
-def request_next_tensor(data, server_address='localhost'):
-    with grpc.insecure_channel('{}:50051'.format(server_address), options=[
+def request_next_tensor(data, server_address='localhost', port=50051):
+    with grpc.insecure_channel('{}:{}'.format(server_address, port), options=[
         ('grpc.max_send_message_length', 50 * 1024 * 1024),
         ('grpc.max_receive_message_length', 50 * 1024 * 1024),
         ('grpc.max_message_length', 50 * 1024 * 1024),
@@ -153,6 +153,7 @@ if __name__ == '__main__':
     parser.add_argument('--device', action='store_true')
     parser.add_argument('--log_filepath', type=str,
                         default='./inference_result.log')
+    parser.add_argument('--port', type=int, default=50051)
 
     args = parser.parse_args()
     if args.connected_server is None:
@@ -167,4 +168,4 @@ if __name__ == '__main__':
 
     logging.basicConfig(
         filename=args.log_filepath, level=logging.INFO)
-    serve(args.connected_server)
+    serve(args.connected_server, args.port)
