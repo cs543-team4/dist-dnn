@@ -107,3 +107,103 @@ Traceback (most recent call last):
   File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_common.py", line 84, in _transform
     return transformer(message)
 TypeError: descriptor 'SerializeToString' requires a 'google.protobuf.pyext._message.CMessage' object but received a 'NoneType'
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 132, in split_model
+    split_model.build(input_shape=layers[0].input_shape)
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 28, 28, 1]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 132, in split_model
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 266, in build
+    super(Sequential, self).build(input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 685, in build
+    self.call(x, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 291, in call
+    outputs = layer(inputs, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 886, in __call__
+    self.name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/input_spec.py", line 216, in assert_input_compatibility
+    ' but received input with shape ' + str(shape))
+ValueError: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 28, 28, 1]
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 132, in split_model
+    split_model.add(layer)
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 784]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 134, in split_model
+    split_model.build(input_shape=layers[0].input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 266, in build
+    super(Sequential, self).build(input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 685, in build
+    self.call(x, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 291, in call
+    outputs = layer(inputs, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 886, in __call__
+    self.name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/input_spec.py", line 216, in assert_input_compatibility
+    ' but received input with shape ' + str(shape))
+ValueError: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 784]
+ERROR:grpc._server:Exception calling application: 'Sequential' object has no attribute 'model'
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 72, in test_process
+    for layer in self.model.model.layers:
+AttributeError: 'Sequential' object has no attribute 'model'
+ERROR:grpc._server:Exception calling application: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 784]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 89, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 138, in split_model
+    split_model.build(input_shape=layers[0].input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 266, in build
+    super(Sequential, self).build(input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 685, in build
+    self.call(x, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 291, in call
+    outputs = layer(inputs, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 886, in __call__
+    self.name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/input_spec.py", line 216, in assert_input_compatibility
+    ' but received input with shape ' + str(shape))
+ValueError: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 784]
+ERROR:grpc._server:Exception calling application: Input 0 of layer dense_1 is incompatible with the layer: expected axis -1 of input shape to have value 128 but received input with shape [None, 28, 28, 1]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 89, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 138, in split_model
+    split_model.build(input_shape=layers[start].input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 266, in build
+    super(Sequential, self).build(input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 685, in build
+    self.call(x, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 291, in call
+    outputs = layer(inputs, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 886, in __call__
+    self.name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/input_spec.py", line 216, in assert_input_compatibility
+    ' but received input with shape ' + str(shape))
+ValueError: Input 0 of layer dense_1 is incompatible with the layer: expected axis -1 of input shape to have value 128 but received input with shape [None, 28, 28, 1]

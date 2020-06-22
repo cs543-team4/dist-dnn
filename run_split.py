@@ -7,6 +7,8 @@ import inference_service_pb2
 import inference_service_pb2_grpc
 import mnist
 
+NUM_OF_LAYERS = 4
+
 test_ds = mnist.get_test_ds()
 sample_images, _ = list(test_ds)[0]
 
@@ -17,7 +19,7 @@ test_loss = tf.keras.metrics.Mean(name='test_loss')
 test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
     name='test_accuracy')
 
-connected_server = [[('localhost', 50051), ('localhost', 50052)]]
+connected_server = [[('localhost', 50051), ('localhost', 50052), ('localhost', 50053)]]
 
 def get_best_split_point(server_times):
     number_of_layers = len(server_times[0][0])
@@ -25,7 +27,9 @@ def get_best_split_point(server_times):
     for server_pipeline in server_times:
         number_of_servers = len(server_pipeline)
         time_per_layers = [[0] * number_of_servers for _ in range(number_of_layers)]
+        print('length of server pipeline: ', len(server_pipeline))
         for i, server_time in enumerate(server_pipeline):
+            print('length of measured time sent from server: ', len(server_time))
             for j, time_per_layer in enumerate(server_time):
                 time_per_layers[j][i] = time_per_layer
 
@@ -72,8 +76,12 @@ def run_split():
         pipeline_times = []
         for server, port in server_pipeline:
             server_time = request_test(serialize(tf.cast(sample_images, dtype=tf.float32, name=None)), server, port)
+            while len(server_time) != NUM_OF_LAYERS:    # request again: # of layers are hardcoded
+                server_time = request_test(serialize(tf.cast(sample_images, dtype=tf.float32, name=None)), server, port)
+
             pipeline_times.append(server_time)
         server_times.append(pipeline_times)
+        print(pipeline_times)
 
     best_point = get_best_split_point(server_times)
 

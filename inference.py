@@ -67,6 +67,8 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
         intermediate_prediction = parse(data)
         print('parsed data type: ', type(intermediate_prediction))
         response = inference_service_pb2.timeData()
+
+        self.model.set_model(tf.keras.models.load_model('full_model.h5')) # restore model for test purpose (splitted again)
         for layer in self.model.model.layers:
             single_layer_model = tf.keras.Sequential()
             single_layer_model.add(layer)
@@ -94,6 +96,9 @@ class SubModel:
         self.predictions = []
         self.pred_index = 0
         self.model = tf.keras.models.load_model('full_model.h5')
+
+    def set_model(self, new_model):
+        self.model = new_model
 
     def process_data(self, input_data):
         result = self.model(input_data)
@@ -124,13 +129,16 @@ class SubModel:
         return test_accuracy.result()
 
     def split_model(self, start, end):
+        self.model = tf.keras.models.load_model('full_model.h5')
         layers = self.model.layers
         split_model = tf.keras.Sequential()
         for layer in layers[start:end+1]:
             split_model.add(layer)
 
-        split_model.build(input_shape=layers[0].input_shape)
+        split_model.build(input_shape=layers[start].input_shape)
         split_model.summary()
+        # if end - start <= 0:
+
         self.model = split_model
 
 
@@ -150,6 +158,7 @@ def request_next_tensor(data, server_address='localhost', port=50051):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Inference Daemon')
     parser.add_argument('--connected_server', '-s', type=str, action='append')
+    parser.add_argument('--connected_server_port', '-p', type=int, action='append')
     parser.add_argument('--device', action='store_true')
     parser.add_argument('--log_filepath', type=str,
                         default='./inference_result.log')
@@ -158,13 +167,19 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.connected_server is None:
         args.connected_server = []
+        args.connected_server_port = []
 
     print('Connected Servers: ', args.connected_server)
+    print('Connected Servers\' Ports: ', args.connected_server_port)
 
     if args.device:
-        images, _ = list(test_ds)[0]
+        for test_images, test_labels in test_ds:
+            for server, port in zip(args.connected_server, args.connected_server_port):
+                request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port)
 
-        request_next_tensor(serialize(tf.cast(images, dtype=tf.float32, name=None)))
+            sleep(1)
+
+        # TODO: partial processing
 
     logging.basicConfig(
         filename=args.log_filepath, level=logging.INFO)
