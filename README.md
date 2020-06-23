@@ -2,6 +2,10 @@
 
 A simulator for deploying a single neural network model into the distributed environment.
 
+## Dependency
+```
+pip install grpcio grpclib protobuf tensorflow
+```
 
 ## Instructions
 

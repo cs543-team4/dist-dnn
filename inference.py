@@ -15,6 +15,8 @@ import inference_service_pb2
 import inference_service_pb2_grpc
 import mnist
 
+from threading import Thread
+
 """
 Test dataset for verification
 """
@@ -37,6 +39,17 @@ def serve(connected_servers, port):
     server.start()
     server.wait_for_termination()
 
+async def partial_inference(model, input_tensor, connected_servers):
+    result = model.process_data(parsed)
+    if len(self.connected_servers) == 0:
+            accuracy = self.model.validate_predictions()
+            print('Received serialized tensor (current accuracy {}%)'.format(accuracy * 100))
+
+    else:
+        next_server_address, next_server_port = self._choose_next_server(
+            self.connected_servers)
+        request_next_tensor(serialize(result), next_server_address, next_server_port)
+
 
 class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
     def __init__(self, connected_servers):
@@ -48,17 +61,18 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
         return connected_servers[0]
 
     def process_tensor(self, request, context):
+        print('received data: ', len(request.data))
         parsed = parse(request.data)
+        print('input data shape: ', parsed.shape)
         result = self.model.process_data(parsed)
-        sleep(5)
         if len(self.connected_servers) == 0:
             accuracy = self.model.validate_predictions()
             return inference_service_pb2.Reply(
                 message='Received serialized tensor (current accuracy {}%)'.format(accuracy * 100))
         else:
-            next_server_address = self._choose_next_server(
+            next_server_address, next_server_port = self._choose_next_server(
                 self.connected_servers)
-            request_next_tensor(serialize(result), next_server_address)
+            request_next_tensor(serialize(result), next_server_address, next_server_port)
 
             return inference_service_pb2.Reply(
                 message='Received serialized tensor')
@@ -66,7 +80,6 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
     def test_process(self, request, context):
         data = request.data
         intermediate_prediction = parse(data)
-        print('parsed data type: ', type(intermediate_prediction))
         response = inference_service_pb2.timeData()
 
         self.model.set_model(tf.keras.models.load_model('full_model.h5')) # restore model for test purpose (splitted again)
@@ -104,12 +117,14 @@ class SubModel:
 
     def process_data(self, input_data):
         result = self.model(input_data)
+        time.sleep(5)
         self.predictions.append(result)
         self.pred_index += 1
 
         return result
 
     def validate_predictions(self):
+        print('validate_predictions')
         test_loss = tf.keras.metrics.Mean(name='test_loss')
         test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
             name='test_accuracy')
@@ -154,6 +169,7 @@ def request_next_tensor(data, server_address='localhost', port=50051):
         ('grpc.max_metadata_size', 16 * 1024 * 1024)
     ]) as channel:
         stub = inference_service_pb2_grpc.InferenceServiceStub(channel)
+        print('sent data: ', len(data))
         response = stub.process_tensor(
             inference_service_pb2.SerializedTensor(data=data))
     print("Response from next inference server: ", response.message)
@@ -173,22 +189,29 @@ if __name__ == '__main__':
         args.connected_server = []
         args.connected_server_port = []
 
+    print('Running on Port {}'.format(args.port))
+
     print('Connected Servers: ', args.connected_server)
     print('Connected Servers\' Ports: ', args.connected_server_port)
 
+    connected_servers = list(zip(args.connected_server, args.connected_server_port))
+
     if args.device:
         count = 0
-        for test_images, test_labels in test_ds:
-            for server, port in zip(args.connected_server, args.connected_server_port):
-                request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port)
+        test_images, _ = list(test_ds)[0]
 
-            # sleep(1)
-            count += 1
-            if count >= 5:
-                break   # send only 5 batches currently
+        for server, port in connected_servers:
+            print(test_images.shape)
+            request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port)
+        # for test_images, _ in test_ds:
+        #     for server, port in zip(args.connected_server, args.connected_server_port):
+        #         request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port)
+        #     break
+            # time.sleep(1)
 
         # TODO: partial processing
 
-    logging.basicConfig(
-        filename=args.log_filepath, level=logging.INFO)
-    serve(args.connected_server, args.port)
+    else:
+        logging.basicConfig(
+            filename=args.log_filepath, level=logging.INFO)
+        serve(connected_servers, args.port)

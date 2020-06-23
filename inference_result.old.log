@@ -1,0 +1,2443 @@
+INFO:root:predictions: [7, 2, 1, 0, 4, 1, 4, 9, 5, 9, 0, 6, 9, 0, 1, 5, 9, 7, 8, 4, 9, 6, 6, 5, 4, 0, 7, 4, 0, 1, 3, 1]
+INFO:root:labels: [7 2 1 0 4 1 4 9 5 9 0 6 9 0 1 5 9 7 3 4 9 6 6 5 4 0 7 4 0 1 3 1]
+INFO:root:predictions: [7, 2, 1, 0, 4, 1, 4, 9, 5, 9, 0, 6, 9, 0, 1, 5, 9, 7, 8, 4, 9, 6, 6, 5, 4, 0, 7, 4, 0, 1, 3, 1]
+INFO:root:labels: [3 4 7 2 7 1 2 1 1 7 4 2 3 5 1 2 4 4 6 3 5 5 6 0 4 1 9 5 7 8 9 3]
+INFO:root:test loss: 5.005849361419678, test accuracy: 0.546875
+ERROR:grpc._server:Exception calling application: 'str' object has no attribute '_keras_mask'
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 70, in test_process
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 832, in _run_internal_graph
+    input_t._keras_mask = mask
+AttributeError: 'str' object has no attribute '_keras_mask'
+ERROR:grpc._server:Exception calling application: 'str' object has no attribute '_keras_mask'
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 70, in test_process
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 832, in _run_internal_graph
+    input_t._keras_mask = mask
+AttributeError: 'str' object has no attribute '_keras_mask'
+ERROR:grpc._server:Exception calling application: Type mismatch between parsed tensor (double) and dtype (float) [Op:ParseTensor]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 64, in test_process
+    intermediate_prediction = parse(data)
+  File "/home/greenmon/Projects/dist-dnn/tensor_utils.py", line 5, in parse
+    return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/gen_parsing_ops.py", line 2160, in parse_tensor
+    _ops.raise_from_not_ok_status(e, name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/ops.py", line 6653, in raise_from_not_ok_status
+    six.raise_from(core._status_to_exception(e.code, message), None)
+  File "<string>", line 3, in raise_from
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Type mismatch between parsed tensor (double) and dtype (float) [Op:ParseTensor]
+ERROR:grpc._server:Exception calling application: Type mismatch between parsed tensor (double) and dtype (float) [Op:ParseTensor]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 64, in test_process
+    print('test data type: ', type(data))
+  File "/home/greenmon/Projects/dist-dnn/tensor_utils.py", line 5, in parse
+    return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/gen_parsing_ops.py", line 2160, in parse_tensor
+    _ops.raise_from_not_ok_status(e, name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/ops.py", line 6653, in raise_from_not_ok_status
+    six.raise_from(core._status_to_exception(e.code, message), None)
+  File "<string>", line 3, in raise_from
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Type mismatch between parsed tensor (double) and dtype (float) [Op:ParseTensor]
+ERROR:grpc._server:Exception calling application: Type mismatch between parsed tensor (double) and dtype (float) [Op:ParseTensor]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 65, in test_process
+    intermediate_prediction = parse(data)
+  File "/home/greenmon/Projects/dist-dnn/tensor_utils.py", line 5, in parse
+    return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/gen_parsing_ops.py", line 2160, in parse_tensor
+    _ops.raise_from_not_ok_status(e, name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/ops.py", line 6653, in raise_from_not_ok_status
+    six.raise_from(core._status_to_exception(e.code, message), None)
+  File "<string>", line 3, in raise_from
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Type mismatch between parsed tensor (double) and dtype (float) [Op:ParseTensor]
+ERROR:grpc._server:Exception calling application: Type mismatch between parsed tensor (double) and dtype (float) [Op:ParseTensor]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 64, in test_process
+    intermediate_prediction = parse(data)
+  File "/home/greenmon/Projects/dist-dnn/tensor_utils.py", line 5, in parse
+    return tf.io.parse_tensor(tf.io.decode_base64(encoded_tensor), tf.float32)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/gen_parsing_ops.py", line 2160, in parse_tensor
+    _ops.raise_from_not_ok_status(e, name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/ops.py", line 6653, in raise_from_not_ok_status
+    six.raise_from(core._status_to_exception(e.code, message), None)
+  File "<string>", line 3, in raise_from
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Type mismatch between parsed tensor (double) and dtype (float) [Op:ParseTensor]
+ERROR:grpc._common:Exception serializing message!
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_common.py", line 84, in _transform
+    return transformer(message)
+TypeError: descriptor 'SerializeToString' requires a 'google.protobuf.pyext._message.CMessage' object but received a 'NoneType'
+ERROR:grpc._common:Exception serializing message!
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_common.py", line 84, in _transform
+    return transformer(message)
+TypeError: descriptor 'SerializeToString' requires a 'google.protobuf.pyext._message.CMessage' object but received a 'NoneType'
+ERROR:grpc._common:Exception serializing message!
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_common.py", line 84, in _transform
+    return transformer(message)
+TypeError: descriptor 'SerializeToString' requires a 'google.protobuf.pyext._message.CMessage' object but received a 'NoneType'
+ERROR:grpc._common:Exception serializing message!
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_common.py", line 84, in _transform
+    return transformer(message)
+TypeError: descriptor 'SerializeToString' requires a 'google.protobuf.pyext._message.CMessage' object but received a 'NoneType'
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 132, in split_model
+    split_model.build(input_shape=layers[0].input_shape)
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 28, 28, 1]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 132, in split_model
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 266, in build
+    super(Sequential, self).build(input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 685, in build
+    self.call(x, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 291, in call
+    outputs = layer(inputs, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 886, in __call__
+    self.name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/input_spec.py", line 216, in assert_input_compatibility
+    ' but received input with shape ' + str(shape))
+ValueError: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 28, 28, 1]
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 132, in split_model
+    split_model.add(layer)
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 784]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 134, in split_model
+    split_model.build(input_shape=layers[0].input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 266, in build
+    super(Sequential, self).build(input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 685, in build
+    self.call(x, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 291, in call
+    outputs = layer(inputs, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 886, in __call__
+    self.name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/input_spec.py", line 216, in assert_input_compatibility
+    ' but received input with shape ' + str(shape))
+ValueError: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 784]
+ERROR:grpc._server:Exception calling application: 'Sequential' object has no attribute 'model'
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 72, in test_process
+    for layer in self.model.model.layers:
+AttributeError: 'Sequential' object has no attribute 'model'
+ERROR:grpc._server:Exception calling application: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 784]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 89, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 138, in split_model
+    split_model.build(input_shape=layers[0].input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 266, in build
+    super(Sequential, self).build(input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 685, in build
+    self.call(x, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 291, in call
+    outputs = layer(inputs, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 886, in __call__
+    self.name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/input_spec.py", line 216, in assert_input_compatibility
+    ' but received input with shape ' + str(shape))
+ValueError: Input 0 of layer dense is incompatible with the layer: expected axis -1 of input shape to have value 21632 but received input with shape [None, 784]
+ERROR:grpc._server:Exception calling application: Input 0 of layer dense_1 is incompatible with the layer: expected axis -1 of input shape to have value 128 but received input with shape [None, 28, 28, 1]
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 89, in split_model
+    self.model.split_model(start, end)
+  File "inference.py", line 138, in split_model
+    split_model.build(input_shape=layers[start].input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 266, in build
+    super(Sequential, self).build(input_shape)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 685, in build
+    self.call(x, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 291, in call
+    outputs = layer(inputs, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 886, in __call__
+    self.name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/input_spec.py", line 216, in assert_input_compatibility
+    ' but received input with shape ' + str(shape))
+ValueError: Input 0 of layer dense_1 is incompatible with the layer: expected axis -1 of input shape to have value 128 but received input with shape [None, 28, 28, 1]
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    start = request.start
+  File "inference.py", line 132, in split_model
+    def split_model(self, start, end):
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    start = request.start
+  File "inference.py", line 132, in split_model
+    def split_model(self, start, end):
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    start = request.start
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split model start')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split model start')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request: ', request)
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request: ', request)
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request: ', request)
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request: ', request)
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request: ', request)
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: list index out of range
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 87, in split_model
+    print('split_model request')
+  File "inference.py", line 132, in split_model
+IndexError: list index out of range
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+    test_loss = tf.keras.metrics.Mean(name='test_loss')
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: name 'sleep' is not defined
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    sleep(5)
+NameError: name 'sleep' is not defined
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+    test_loss = tf.keras.metrics.Mean(name='test_loss')
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+    def validate_predictions(self):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+    def validate_predictions(self):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 52, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 108, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592874260.939800445","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 160, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592874260.939800445","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 52, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 108, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592875515.501794277","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 160, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592875515.501794277","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1))."
+	debug_error_string = "{"created":"@1592876238.942175446","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 160, in request_next_tensor
+    response = stub.process_tensor(
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1))."
+	debug_error_string = "{"created":"@1592876238.942175446","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).","grpc_status":2}"
+>
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 52, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 108, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592876454.953363181","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 160, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592876454.953363181","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1))."
+	debug_error_string = "{"created":"@1592886131.573281678","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 160, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1))."
+	debug_error_string = "{"created":"@1592886131.573281678","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).","grpc_status":2}"
+>
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    print('validate prediction?')
+  File "inference.py", line 113, in validate_predictions
+    def validate_predictions(self):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    print('validate prediction?')
+  File "inference.py", line 113, in validate_predictions
+    def validate_predictions(self):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 52, in process_tensor
+    print(type(parsed))
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592886692.622127025","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 61, in process_tensor
+    self.connected_servers)
+  File "inference.py", line 159, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592886692.622127025","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+    def validate_predictions(self):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+    def validate_predictions(self):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+ERROR:grpc._server:Exception calling application: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    if len(self.connected_servers) == 0:
+  File "inference.py", line 113, in validate_predictions
+    def validate_predictions(self):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 143, in __call__
+    losses = self.call(y_true, y_pred)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 246, in call
+    return self.fn(y_true, y_pred, **self._fn_kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/losses.py", line 1558, in sparse_categorical_crossentropy
+    y_true, y_pred, from_logits=from_logits, axis=axis)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 4658, in sparse_categorical_crossentropy
+    labels=target, logits=output)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3591, in sparse_softmax_cross_entropy_with_logits_v2
+    labels=labels, logits=logits, name=name)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 3507, in sparse_softmax_cross_entropy_with_logits
+    logits.get_shape()))
+ValueError: Shape mismatch: The shape of labels (received (32,)) should equal the shape of logits except for the last dimension (received (25088, 1)).
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592886995.158283956","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 159, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592886995.158283956","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887040.400243628","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 159, in request_next_tensor
+    response = stub.process_tensor(
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887040.400243628","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887180.073921195","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 159, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887180.073921195","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    self.predictions.append(result)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887248.866630376","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 159, in request_next_tensor
+    print("Response from next inference server: ", response.message)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887248.866630376","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 106, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887259.307918679","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 158, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887259.307918679","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    print(parsed)
+  File "inference.py", line 106, in process_data
+    def process_data(self, input_data):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887521.445618752","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    self.connected_servers)
+  File "inference.py", line 158, in request_next_tensor
+    response = stub.process_tensor(
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887521.445618752","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887527.932199378","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 63, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 159, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887527.932199378","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887722.928830244","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 63, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 159, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592887722.928830244","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888126.447935378","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 63, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 159, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888126.447935378","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888147.725388742","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 63, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 159, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888147.725388742","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888179.540470308","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 63, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 159, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888179.540470308","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 106, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888577.556482792","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 158, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888577.556482792","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 106, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888606.212372015","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 158, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888606.212372015","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 106, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888704.101987358","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 158, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888704.101987358","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 106, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888715.387437891","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 158, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888715.387437891","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 53, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 106, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888978.661544230","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 62, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 158, in request_next_tensor
+    response = stub.process_tensor(
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592888978.661544230","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592889015.814738607","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 63, in process_tensor
+    request_next_tensor(serialize(result), next_server_address)
+  File "inference.py", line 160, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592889015.814738607","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 107, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592889404.743564885","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 63, in process_tensor
+    request_next_tensor(serialize(result), next_server_address, next_server_port)
+  File "inference.py", line 160, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592889404.743564885","description":"Error received from peer ipv6:[::1]:50051","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+ERROR:grpc._server:Exception calling application: object of type 'zip' has no len()
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 55, in process_tensor
+    if len(self.connected_servers) == 0:
+TypeError: object of type 'zip' has no len()
+ERROR:grpc._server:Exception calling application: object of type 'zip' has no len()
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 55, in process_tensor
+    if len(self.connected_servers) == 0:
+TypeError: object of type 'zip' has no len()
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses"
+	debug_error_string = "{"created":"@1592889495.891792429","description":"Failed to pick subchannel","file":"src/core/ext/filters/client_channel/client_channel.cc","file_line":3962,"referenced_errors":[{"created":"@1592889495.891790533","description":"failed to connect to all addresses","file":"src/core/ext/filters/client_channel/lb_policy/pick_first/pick_first.cc","file_line":394,"grpc_status":14}]}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 63, in process_tensor
+    request_next_tensor(serialize(result), next_server_address, next_server_port)
+  File "inference.py", line 160, in request_next_tensor
+    inference_service_pb2.SerializedTensor(data=data))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses"
+	debug_error_string = "{"created":"@1592889495.891792429","description":"Failed to pick subchannel","file":"src/core/ext/filters/client_channel/client_channel.cc","file_line":3962,"referenced_errors":[{"created":"@1592889495.891790533","description":"failed to connect to all addresses","file":"src/core/ext/filters/client_channel/lb_policy/pick_first/pick_first.cc","file_line":394,"grpc_status":14}]}"
+>
+WARNING:tensorflow:Model was constructed with shape (None, 28, 28, 1) for input Tensor("conv2d_input:0", shape=(None, 28, 28, 1), dtype=float32), but it was called on an input with incompatible shape (32, 10).
+ERROR:grpc._server:Exception calling application: input tensor must have rank 4
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 930, in merge_with
+    self.assert_same_rank(other)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 985, in assert_same_rank
+    (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) must have the same rank
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1015, in with_rank
+    return self.merge_with(unknown_shape(rank=rank))
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 936, in merge_with
+    raise ValueError("Shapes %s and %s are not compatible" % (self, other))
+ValueError: Shapes (32, 10) and (None, None, None, None) are not compatible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1039, in __init__
+    input_shape.with_rank(num_spatial_dims + 2)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1017, in with_rank
+    raise ValueError("Shape %s must have rank %d" % (self, rank))
+ValueError: Shape (32, 10) must have rank 4
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 54, in process_tensor
+    result = self.model.process_data(parsed)
+  File "inference.py", line 106, in process_data
+    result = self.model(input_data)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/sequential.py", line 277, in call
+    return super(Sequential, self).call(inputs, training=training, mask=mask)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 719, in call
+    convert_kwargs_to_constants=base_layer_utils.call_context().saving)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/network.py", line 888, in _run_internal_graph
+    output_tensors = layer(computed_tensors, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py", line 968, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/keras/layers/convolutional.py", line 201, in call
+    data_format=self._conv_op_data_format)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py", line 1042, in __init__
+    "input tensor must have rank %d" % (num_spatial_dims + 2))
+ValueError: input tensor must have rank 4
+ERROR:grpc._server:Exception calling application: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592889692.222457931","description":"Error received from peer ipv6:[::1]:50052","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+Traceback (most recent call last):
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "inference.py", line 63, in process_tensor
+  File "inference.py", line 160, in request_next_tensor
+    print("Response from next inference server: ", response.message)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 826, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/greenmon/.pyenv/versions/tensorflow-env/lib/python3.7/site-packages/grpc/_channel.py", line 729, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: input tensor must have rank 4"
+	debug_error_string = "{"created":"@1592889692.222457931","description":"Error received from peer ipv6:[::1]:50052","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: input tensor must have rank 4","grpc_status":2}"
+>
+INFO:root:predictions: [7, 2, 1, 0, 4, 1, 4, 9, 5, 9, 0, 6, 9, 0, 1, 5, 9, 7, 8, 4, 9, 6, 6, 5, 4, 0, 7, 4, 0, 1, 3, 1]
+INFO:root:labels: [7 2 1 0 4 1 4 9 5 9 0 6 9 0 1 5 9 7 3 4 9 6 6 5 4 0 7 4 0 1 3 1]
+INFO:root:test loss: 0.048442352563142776, test accuracy: 0.96875
+INFO:root:predictions: [7, 2, 1, 0, 4, 1, 4, 9, 5, 9, 0, 6, 9, 0, 1, 5, 9, 7, 8, 4, 9, 6, 6, 5, 4, 0, 7, 4, 0, 1, 3, 1]
+INFO:root:labels: [7 2 1 0 4 1 4 9 5 9 0 6 9 0 1 5 9 7 3 4 9 6 6 5 4 0 7 4 0 1 3 1]
+INFO:root:predictions: [7, 2, 1, 0, 4, 1, 4, 9, 5, 9, 0, 6, 9, 0, 1, 5, 9, 7, 8, 4, 9, 6, 6, 5, 4, 0, 7, 4, 0, 1, 3, 1]
+INFO:root:labels: [3 4 7 2 7 1 2 1 1 7 4 2 3 5 1 2 4 4 6 3 5 5 6 0 4 1 9 5 7 8 9 3]
+INFO:root:test loss: 5.005849361419678, test accuracy: 0.546875
