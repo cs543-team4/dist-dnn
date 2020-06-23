@@ -50,6 +50,7 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
     def process_tensor(self, request, context):
         parsed = parse(request.data)
         result = self.model.process_data(parsed)
+        sleep(5)
         if len(self.connected_servers) == 0:
             accuracy = self.model.validate_predictions()
             return inference_service_pb2.Reply(
@@ -83,6 +84,7 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
         return response
 
     def split_model(self, request, context):
+        print('split_model request')
         start = request.start
         end = request.end
 
@@ -132,6 +134,8 @@ class SubModel:
         self.model = tf.keras.models.load_model('full_model.h5')
         layers = self.model.layers
         split_model = tf.keras.Sequential()
+        print('start index: ', start)
+        print('end index: ', end)
         for layer in layers[start:end+1]:
             split_model.add(layer)
 
@@ -173,11 +177,15 @@ if __name__ == '__main__':
     print('Connected Servers\' Ports: ', args.connected_server_port)
 
     if args.device:
+        count = 0
         for test_images, test_labels in test_ds:
             for server, port in zip(args.connected_server, args.connected_server_port):
                 request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port)
 
-            sleep(1)
+            # sleep(1)
+            count += 1
+            if count >= 5:
+                break   # send only 5 batches currently
 
         # TODO: partial processing
 

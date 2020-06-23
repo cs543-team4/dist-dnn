@@ -113,9 +113,15 @@ def request_split(start, end, server_address='localhost', port=50051):
         ('grpc.max_metadata_size', 16 * 1024 * 1024)
     ]) as channel:
         stub = inference_service_pb2_grpc.InferenceServiceStub(channel)
-        response = stub.split_model(inference_service_pb2.slicingData(start=start, end=end))
-        print('request split response: ', response)
-        return response.message
+        try:
+            response = stub.split_model(inference_service_pb2.slicingData(start=start, end=end))
+            message = response.message
+        except Exception as e:
+            print(e)
+            print('Unknown Exception occured - split failed')
+            message = None 
+
+        return message
 
 
 if __name__ == '__main__':
