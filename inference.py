@@ -15,8 +15,6 @@ import inference_service_pb2
 import inference_service_pb2_grpc
 import mnist
 
-from threading import Thread
-
 """
 Test dataset for verification
 """
@@ -24,7 +22,6 @@ Test dataset for verification
 test_ds = mnist.get_test_ds()
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
-
 
 def serve(connected_servers, port):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=100), options=[
@@ -38,17 +35,6 @@ def serve(connected_servers, port):
     server.add_insecure_port('[::]:{}'.format(port))
     server.start()
     server.wait_for_termination()
-
-async def partial_inference(model, input_tensor, connected_servers):
-    result = model.process_data(parsed)
-    if len(self.connected_servers) == 0:
-            accuracy = self.model.validate_predictions()
-            print('Received serialized tensor (current accuracy {}%)'.format(accuracy * 100))
-
-    else:
-        next_server_address, next_server_port = self._choose_next_server(
-            self.connected_servers)
-        request_next_tensor(serialize(result), next_server_address, next_server_port)
 
 
 class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
@@ -111,39 +97,40 @@ class SubModel:
         self.predictions = []
         self.pred_index = 0
         self.model = tf.keras.models.load_model('full_model.h5')
+        self.test_loss = tf.keras.metrics.Mean(name='test_loss')
+        self.test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
+            name='test_accuracy')
+        self.test_ds = iter(test_ds)
 
     def set_model(self, new_model):
         self.model = new_model
 
     def process_data(self, input_data):
         result = self.model(input_data)
-        time.sleep(5)
+        time.sleep(2)
         self.predictions.append(result)
         self.pred_index += 1
 
         return result
 
     def validate_predictions(self):
-        print('validate_predictions')
-        test_loss = tf.keras.metrics.Mean(name='test_loss')
-        test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
-            name='test_accuracy')
-        for i, (_, labels) in enumerate(test_ds):
-            if i >= self.pred_index:
-                break
+        print('Validating predictions. . .')
+        _, labels = next(self.test_ds)
 
-            t_loss = loss_object(labels, self.predictions[i])
-            logging.info('predictions: {}'.format(
-                [np.argmax(p) for p in self.predictions[i]]))
-            logging.info('labels: {}'.format(labels))
+        i = self.pred_index - 1
 
-            test_loss(t_loss)
-            test_accuracy(labels, self.predictions)
+        t_loss = loss_object(labels, self.predictions[i])
+        logging.info('predictions: {}'.format(
+            [np.argmax(p) for p in self.predictions[i]]))
+        logging.info('labels: {}'.format(labels))
+
+        self.test_loss(t_loss)
+        self.test_accuracy(labels, self.predictions[i])
 
         logging.info('test loss: {}, test accuracy: {}'.format(
-            test_loss.result(), test_accuracy.result()))
+            self.test_loss.result(), self.test_accuracy.result()))
 
-        return test_accuracy.result()
+        return self.test_accuracy.result()
 
     def split_model(self, start, end):
         self.model = tf.keras.models.load_model('full_model.h5')
@@ -162,17 +149,23 @@ class SubModel:
 
 
 def request_next_tensor(data, server_address='localhost', port=50051):
-    with grpc.insecure_channel('{}:{}'.format(server_address, port), options=[
+    def process_response(call_future):
+        print("Response from next inference server: ")
+        print(call_future.result().message)
+
+    channel = grpc.insecure_channel('{}:{}'.format(server_address, port), options=[
         ('grpc.max_send_message_length', 50 * 1024 * 1024),
         ('grpc.max_receive_message_length', 50 * 1024 * 1024),
         ('grpc.max_message_length', 50 * 1024 * 1024),
         ('grpc.max_metadata_size', 16 * 1024 * 1024)
-    ]) as channel:
-        stub = inference_service_pb2_grpc.InferenceServiceStub(channel)
-        print('sent data: ', len(data))
-        response = stub.process_tensor(
-            inference_service_pb2.SerializedTensor(data=data))
-    print("Response from next inference server: ", response.message)
+    ])
+
+    stub = inference_service_pb2_grpc.InferenceServiceStub(channel)
+    print('sent data: ', len(data))
+    response_future = stub.process_tensor.future(
+        inference_service_pb2.SerializedTensor(data=data))
+
+    response_future.add_done_callback(process_response)
 
 
 if __name__ == '__main__':
@@ -198,16 +191,14 @@ if __name__ == '__main__':
 
     if args.device:
         count = 0
-        test_images, _ = list(test_ds)[0]
+        for test_images, _ in test_ds:
+            for server, port in connected_servers:
+                request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port)
 
-        for server, port in connected_servers:
-            print(test_images.shape)
-            request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port)
-        # for test_images, _ in test_ds:
-        #     for server, port in zip(args.connected_server, args.connected_server_port):
-        #         request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port)
-        #     break
-            # time.sleep(1)
+            count += 1
+            if count >= 5:
+                break
+            time.sleep(1)
 
         # TODO: partial processing
 
