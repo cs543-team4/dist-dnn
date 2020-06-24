@@ -135,18 +135,23 @@ class RetinanetModel(base_model.Model):
 
         class OutputLayer(tf.keras.Layer):
             def call(self, cls_outputs, box_outputs):
-                if self._use_bfloat16:
-                    levels = cls_outputs.keys()
-                    for level in levels:
-                        cls_outputs[level] = tf.cast(cls_outputs[level], tf.float32)
-                        box_outputs[level] = tf.cast(box_outputs[level], tf.float32)
+                levels = cls_outputs.keys()
+                for level in levels:
+                    cls_outputs[level] = tf.cast(cls_outputs[level], tf.float32)
+                    box_outputs[level] = tf.cast(box_outputs[level], tf.float32)
+                
+                return cls_outputs, box_outputs
+        if self._use_bfloat16:
+            model.add(OutputLayer)
 
+        class MergeLayer(tf.keras.Layer):
+            def call(self, cls_outputs, box_outputs):
                 model_outputs = {
                     'cls_outputs': cls_outputs,
                     'box_outputs': box_outputs,
                 }
                 return model_outputs
-        model.add(OutputLayer)
+        model.add(MergeLayer)
 
         assert model is not None, 'Fail to build tf.keras.Model.'
         model.optimizer = self.build_optimizer()
