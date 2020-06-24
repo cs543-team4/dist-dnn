@@ -106,7 +106,7 @@ class RetinanetModel(base_model.Model):
   def build_model(self, params, mode=None):
     if self._keras_model is None:
       with backend.get_graph().as_default():
-        outputs = self.model_outputs(self._input_layer, mode)
+        #outputs = self.model_outputs(self._input_layer, mode)
 
         #model = tf.keras.models.Model(
             #inputs=self._input_layer, outputs=outputs, name='retinanet')
