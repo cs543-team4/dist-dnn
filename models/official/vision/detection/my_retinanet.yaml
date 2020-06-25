@@ -1,0 +1,7 @@
+# my_retinanet.yaml
+type: 'retinanet'
+train:
+  train_file_pattern: D:\models\
+eval:
+  eval_file_pattern: ./models/val2017
+  val_json_file: ./models/annotation/captions_val2017.json
