@@ -128,28 +128,28 @@ class RetinanetModel(base_model.Model):
             #inputs=self._input_layer, outputs=outputs, name='retinanet')
         model = tf.keras.Sequential()
         model.add(self._input_layer)
-        class TransposeLayer(tf.keras.Layer):
+        class TransposeLayer(tf.keras.layers.Layer):
           def call(self, inputs):
             return tf.transpose(inputs, [3, 0, 1, 2])
         if self._transpose_input:
           model.add(TransposeLayer)
             
-        class BackBoneLayer(tf.keras.Layer):
+        class BackBoneLayer(tf.keras.layers.Layer):
           def call(self, inputs):
             return self._backbone_fn(inputs, is_training=(mode == mode_keys.TRAIN))
         model.add(BackBoneLayer)
 
-        class FPNLayer(tf.keras.Layer):
+        class FPNLayer(tf.keras.layers.Layer):
           def call(self, inputs):
             return self._fpn.fn(inputs, is_training=(mode == mode_keys.TRAIN))
         model.add(FPNLayer)
 
-        class HeadLayer(tf.keras.Layer):
+        class HeadLayer(tf.keras.layers.Layer):
           def call(self, inputs):
             return self._head_fn(inputs, is_training=(mode == mode_keys.TRAIN))
           model.add(HeadLayer)
 
-        class OutputLayer(tf.keras.Layer):
+        class OutputLayer(tf.keras.layers.Layer):
           def call(self, cls_outputs, box_outputs):
             levels = cls_outputs.keys()
             for level in levels:
@@ -160,7 +160,7 @@ class RetinanetModel(base_model.Model):
         if self._use_bfloat16:
           model.add(OutputLayer)
 
-        class MergeLayer(tf.keras.Layer):
+        class MergeLayer(tf.keras.layers.Layer):
           def call(self, cls_outputs, box_outputs):
             model_outputs = {
               'cls_outputs': cls_outputs,
