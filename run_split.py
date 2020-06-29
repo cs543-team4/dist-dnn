@@ -3,11 +3,13 @@ import tensorflow as tf
 
 from tensor_utils import serialize, parse
 
+import argparse
 import inference_service_pb2
 import inference_service_pb2_grpc
 import mnist
 
 NUM_OF_LAYERS = 4
+DEFAULT_POINT = [0, 1]
 
 test_ds = mnist.get_test_ds()
 sample_images, _ = list(test_ds)[0]
@@ -19,7 +21,7 @@ test_loss = tf.keras.metrics.Mean(name='test_loss')
 test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
     name='test_accuracy')
 
-connected_server = [[('localhost', 50051), ('localhost', 50052), ('localhost', 50053)]]
+connected_server = [('localhost', 50051), ('localhost', 50052), ('localhost', 50053)]
 
 def get_best_split_point(server_times):
     number_of_layers = len(server_times[0][0])
@@ -69,29 +71,40 @@ def get_best_split_point(server_times):
     return split_points
 
 
-def run_split():
-    server_times = []
-    # TODO: how can we serialize the data?
-    for server_pipeline in connected_server:
-        pipeline_times = []
-        for server, port in server_pipeline:
-            server_time = request_test(serialize(tf.cast(sample_images, dtype=tf.float32, name=None)), server, port)
-            while len(server_time) != NUM_OF_LAYERS:    # request again: # of layers are hardcoded
-                server_time = request_test(serialize(tf.cast(sample_images, dtype=tf.float32, name=None)), server, port)
+def run_split(best_point=None):
+    # server_times = []
+    # for server_pipeline in connected_server:
+    #     pipeline_times = []
+    #     for server, port in server_pipeline:
+    #         server_time = request_test(serialize(tf.cast(sample_images, dtype=tf.float32, name=None)), server, port)
+    #         while len(server_time) != NUM_OF_LAYERS:    # request again: # of layers are hardcoded
+    #             server_time = request_test(serialize(tf.cast(sample_images, dtype=tf.float32, name=None)), server, port)
+    #
+    #         pipeline_times.append(server_time)
+    #     server_times.append(pipeline_times)
+    #     print(pipeline_times)
+    #
+    # best_point = get_best_split_point(server_times)
 
-            pipeline_times.append(server_time)
-        server_times.append(pipeline_times)
-        print(pipeline_times)
+    if best_point is None:
+        best_point = POINT
 
-    best_point = get_best_split_point(server_times)
+    def parse_best_point(best_point):
+        ans = [(0, best_point)]
 
-    for pipeline, server_pipeline in enumerate(connected_server):
-        for level, (server, port) in enumerate(server_pipeline):
-            start, end = best_point[pipeline][level]
-            request_split(start, end, server, port)
-            print("Level [{}] Layers from {} to {}".format(level, start, end))
-            print("Server Address: {}".format)
+        for i in range(1, best_point):
+            ans.append((best_point[i - 1] + 1, best_point[i]))
+        ans.append((best_point[-1] + 1, NUM_OF_LAYERS - 1))
 
+        return ans
+
+    best_point = parse_best_point(best_point)
+
+    for level, (server, port) in enumerate(connected_server):
+        start, end = best_point[level]
+        request_split(start, end, server, port)
+        print("Level [{}] Layers from {} to {}".format(level, start, end))
+        print("Server Address: {}".format)
 
 def request_test(data, server_address='localhost', port=50051):
     with grpc.insecure_channel('{}:{}'.format(server_address, port), options=[
@@ -125,4 +138,9 @@ def request_split(start, end, server_address='localhost', port=50051):
 
 
 if __name__ == '__main__':
-    run_split()
+    parser = argparse.ArgumentParser(description='Get best split point')
+    parser.add_argument('points', metavar='N', type=int, nargs='*',
+                        help='list of the index of split point')
+
+    args = parser.parse_args()
+    run_split(args.points)
