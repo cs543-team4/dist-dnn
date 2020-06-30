@@ -93,7 +93,7 @@ def run_split(best_point=None):
     def parse_best_point(best_point):
         ans = [(0, best_point)]
 
-        for i in range(1, best_point):
+        for i in range(1, len(best_point)):
             ans.append((best_point[i - 1] + 1, best_point[i]))
         ans.append((best_point[-1] + 1, NUM_OF_LAYERS - 1))
 
