@@ -18,7 +18,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=b'\370\001\001',
-  serialized_pb=b'\n\x17inference_service.proto\" \n\x10SerializedTensor\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\x18\n\x05Reply\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x18\n\x08testData\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\x18\n\x08timeData\x12\x0c\n\x04time\x18\x01 \x03(\x01\")\n\x0bslicingData\x12\r\n\x05start\x18\x01 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x02 \x01(\x03\x32\x90\x01\n\x10InferenceService\x12-\n\x0eprocess_tensor\x12\x11.SerializedTensor\x1a\x06.Reply\"\x00\x12&\n\x0ctest_process\x12\t.testData\x1a\t.timeData\"\x00\x12%\n\x0bsplit_model\x12\x0c.slicingData\x1a\x06.Reply\"\x00\x42\x03\xf8\x01\x01\x62\x06proto3'
+  create_key=_descriptor._internal_create_key,
+  serialized_pb=b'\n\x17inference_service.proto\"B\n\x10SerializedTensor\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\x03\x12\x11\n\tmax_index\x18\x03 \x01(\x03\"\x18\n\x05Reply\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x18\n\x08testData\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\x18\n\x08timeData\x12\x0c\n\x04time\x18\x01 \x03(\x01\")\n\x0bslicingData\x12\r\n\x05start\x18\x01 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x02 \x01(\x03\x32\x90\x01\n\x10InferenceService\x12-\n\x0eprocess_tensor\x12\x11.SerializedTensor\x1a\x06.Reply\"\x00\x12&\n\x0ctest_process\x12\t.testData\x1a\t.timeData\"\x00\x12%\n\x0bsplit_model\x12\x0c.slicingData\x1a\x06.Reply\"\x00\x42\x03\xf8\x01\x01\x62\x06proto3'
 )
 
 
@@ -30,6 +31,7 @@ _SERIALIZEDTENSOR = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='data', full_name='SerializedTensor.data', index=0,
@@ -37,7 +39,21 @@ _SERIALIZEDTENSOR = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='index', full_name='SerializedTensor.index', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='max_index', full_name='SerializedTensor.max_index', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -51,7 +67,7 @@ _SERIALIZEDTENSOR = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=27,
-  serialized_end=59,
+  serialized_end=93,
 )
 
 
@@ -61,6 +77,7 @@ _REPLY = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='message', full_name='Reply.message', index=0,
@@ -68,7 +85,7 @@ _REPLY = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -81,8 +98,8 @@ _REPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=61,
-  serialized_end=85,
+  serialized_start=95,
+  serialized_end=119,
 )
 
 
@@ -92,6 +109,7 @@ _TESTDATA = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='data', full_name='testData.data', index=0,
@@ -99,7 +117,7 @@ _TESTDATA = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -112,8 +130,8 @@ _TESTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=87,
-  serialized_end=111,
+  serialized_start=121,
+  serialized_end=145,
 )
 
 
@@ -123,6 +141,7 @@ _TIMEDATA = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='time', full_name='timeData.time', index=0,
@@ -130,7 +149,7 @@ _TIMEDATA = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -143,8 +162,8 @@ _TIMEDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=113,
-  serialized_end=137,
+  serialized_start=147,
+  serialized_end=171,
 )
 
 
@@ -154,6 +173,7 @@ _SLICINGDATA = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='start', full_name='slicingData.start', index=0,
@@ -161,14 +181,14 @@ _SLICINGDATA = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='end', full_name='slicingData.end', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -181,8 +201,8 @@ _SLICINGDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=139,
-  serialized_end=180,
+  serialized_start=173,
+  serialized_end=214,
 )
 
 DESCRIPTOR.message_types_by_name['SerializedTensor'] = _SERIALIZEDTENSOR
@@ -236,8 +256,9 @@ _INFERENCESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=183,
-  serialized_end=327,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=217,
+  serialized_end=361,
   methods=[
   _descriptor.MethodDescriptor(
     name='process_tensor',
@@ -247,6 +268,7 @@ _INFERENCESERVICE = _descriptor.ServiceDescriptor(
     input_type=_SERIALIZEDTENSOR,
     output_type=_REPLY,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='test_process',
@@ -256,6 +278,7 @@ _INFERENCESERVICE = _descriptor.ServiceDescriptor(
     input_type=_TESTDATA,
     output_type=_TIMEDATA,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='split_model',
@@ -265,6 +288,7 @@ _INFERENCESERVICE = _descriptor.ServiceDescriptor(
     input_type=_SLICINGDATA,
     output_type=_REPLY,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_INFERENCESERVICE)

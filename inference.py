@@ -23,7 +23,7 @@ test_ds = mnist.get_test_ds()
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
 optimizer = tf.keras.optimizers.Adam()
 
-def serve(connected_servers, port):
+def serve(connected_servers, port, network_config):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=100), options=[
         ('grpc.max_send_message_length', 50 * 1024 * 1024),
         ('grpc.max_receive_message_length', 50 * 1024 * 1024),
@@ -31,16 +31,19 @@ def serve(connected_servers, port):
         ('grpc.max_metadata_size', 16 * 1024 * 1024)
     ])
     inference_service_pb2_grpc.add_InferenceServiceServicer_to_server(
-        InferenceService(connected_servers), server)
+        InferenceService(connected_servers, network_config), server)
     server.add_insecure_port('[::]:{}'.format(port))
     server.start()
     server.wait_for_termination()
 
 
 class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
-    def __init__(self, connected_servers):
+    def __init__(self, connected_servers, network_config):
         self.model = SubModel()
         self.connected_servers = connected_servers
+        self.processing_overhead = network_config['processing_overhead']
+        self.max_throughput = network_config['max_throughput']
+        self.queue_single_inference = []
 
     def _choose_next_server(self, connected_servers):
         # TODO: distribution algorithm - choose next inference server w.r.t. current network state and server availability
@@ -48,7 +51,21 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
 
     def process_tensor(self, request, context):
         print('received data: ', len(request.data))
-        parsed = parse(request.data)
+
+        if request.index != request.max_index:
+            self.queue_single_inference.append(request.data)
+            return inference_service_pb2.Reply(
+            message='Received serialized tensor ({}/{})'.format(request.index, request.max_index))
+
+        # last index - inference start
+        full_data = ''
+        for data in self.queue_single_inference:
+            full_data += data
+        full_data += request.data
+        self.queue_single_inference = []
+        print('length of full data: ', len(full_data))
+        
+        parsed = parse(full_data)
         print('input data shape: ', parsed.shape)
         result = self.model.process_data(parsed)
         if len(self.connected_servers) == 0:
@@ -58,10 +75,10 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
         else:
             next_server_address, next_server_port = self._choose_next_server(
                 self.connected_servers)
-            request_next_tensor(serialize(result), next_server_address, next_server_port)
+            request_next_tensor(serialize(result), next_server_address, next_server_port, self.max_throughput)
 
             return inference_service_pb2.Reply(
-                message='Received serialized tensor')
+                message='Received serialized tensor ({}/{})'.format(request.index, request.max_index))
 
     def test_process(self, request, context):
         data = request.data
@@ -77,6 +94,7 @@ class InferenceService(inference_service_pb2_grpc.InferenceServiceServicer):
             start = time.time()
             intermediate_prediction = single_layer_model(intermediate_prediction)
             time_delta = time.time() - start
+            time_delta *= self.processing_overhead
             response.time.extend([time_delta])
 
         print(response.time)
@@ -107,7 +125,6 @@ class SubModel:
 
     def process_data(self, input_data):
         result = self.model(input_data)
-        time.sleep(2)
         self.predictions.append(result)
         self.pred_index += 1
 
@@ -130,6 +147,7 @@ class SubModel:
         logging.info('test loss: {}, test accuracy: {}'.format(
             self.test_loss.result(), self.test_accuracy.result()))
 
+        print('Current accuracy: {}'.format(self.test_accuracy.result()))
         return self.test_accuracy.result()
 
     def split_model(self, start, end):
@@ -143,12 +161,11 @@ class SubModel:
 
         split_model.build(input_shape=layers[start].input_shape)
         split_model.summary()
-        # if end - start <= 0:
 
         self.model = split_model
 
 
-def request_next_tensor(data, server_address='localhost', port=50051):
+def request_next_tensor(data, server_address='localhost', port=50051, throughput=10000000):
     def process_response(call_future):
         print("Response from next inference server: ")
         print(call_future.result().message)
@@ -162,10 +179,20 @@ def request_next_tensor(data, server_address='localhost', port=50051):
 
     stub = inference_service_pb2_grpc.InferenceServiceStub(channel)
     print('sent data: ', len(data))
-    response_future = stub.process_tensor.future(
-        inference_service_pb2.SerializedTensor(data=data))
+    # TODO: split into multiple packets if exceeds max throughput
+    rest_data = data 
+    data_chunks = []
+    while len(rest_data) > throughput:
+        data_chunks.append(rest_data[:throughput])
+        rest_data = rest_data[throughput:]
 
-    response_future.add_done_callback(process_response)
+    data_chunks.append(rest_data)
+    max_index = len(data_chunks) - 1
+    for index, data_chunk in enumerate(data_chunks):
+        response_future = stub.process_tensor.future(
+            inference_service_pb2.SerializedTensor(data=data_chunk, index=index, max_index=max_index))
+
+        response_future.add_done_callback(process_response)
 
 
 if __name__ == '__main__':
@@ -176,11 +203,18 @@ if __name__ == '__main__':
     parser.add_argument('--log_filepath', type=str,
                         default='./inference_result.log')
     parser.add_argument('--port', type=int, default=50051)
+    parser.add_argument('--max_throughput', type=int, default=100000000)
+    parser.add_argument('--processing_overhead', '-o', type=int, default=1)
 
     args = parser.parse_args()
     if args.connected_server is None:
         args.connected_server = []
         args.connected_server_port = []
+
+    network_config = {
+        'processing_overhead': args.processing_overhead,
+        'max_throughput': args.max_throughput
+    }
 
     print('Running on Port {}'.format(args.port))
 
@@ -193,7 +227,7 @@ if __name__ == '__main__':
         count = 0
         for test_images, _ in test_ds:
             for server, port in connected_servers:
-                request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port)
+                request_next_tensor(serialize(tf.cast(test_images, dtype=tf.float32, name=None)), server_address=server, port=port, throughput=args.max_throughput)
 
             count += 1
             if count >= 5:
@@ -205,4 +239,4 @@ if __name__ == '__main__':
     else:
         logging.basicConfig(
             filename=args.log_filepath, level=logging.INFO)
-        serve(connected_servers, args.port)
+        serve(connected_servers, args.port, network_config)

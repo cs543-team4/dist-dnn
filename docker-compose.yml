@@ -1,18 +1,37 @@
 version: '3'
 services:
-    device:
-        container_name: device
-        build: .
-        # tty: true
-        # cap_add:
-        # - NET_ADMIN
-        command: >
-            /bin/bash -c "python inference.py --device" 
-        
     server_1:
         container_name: server_1
-        build: .
-        command: >
-            /bin/bash -c "python inference.py"
+        image: dist-dnn-server
+        volumes: 
+            - /home/coinse/dist-dnn:/home/root/dist-dnn
+        tty: true
+        cap_add:
+        - NET_ADMIN
+        # command: >
+        #     /bin/bash -c "sh server_1_docker.sh" 
+        
+    server_2:
+        container_name: server_2
+        image: dist-dnn-server
+        volumes: 
+            - /home/coinse/dist-dnn:/home/root/dist-dnn
+        tty: true
+        cap_add:
+        - NET_ADMIN
+        # command: >
+        #     /bin/bash -c "sh server_2_docker.sh"
+
+    server_3:
+        container_name: server_3
+        image: dist-dnn-server
+        volumes: 
+            - /home/coinse/dist-dnn:/home/root/dist-dnn
+        tty: true
+        cap_add:
+        - NET_ADMIN
+        # command: >
+        #     /bin/bash -c "sh server_3_docker.sh"
+
 
 # TODO: run_server daemon: should know about other's IP addresses

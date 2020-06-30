@@ -1,16 +1,26 @@
 import tensorflow as tf
-from tensorflow.keras.layers import Dense, Flatten, Conv2D
+from tensorflow.keras.layers import Dense, Flatten, Conv2D, Dropout, BatchNormalization, MaxPooling2D
 
 
 def create_model():
     model = tf.keras.Sequential()
-    # 64개의 유닛을 가진 완전 연결 층을 모델에 추가합니다:
     model.add(Conv2D(32, 3, input_shape=(28, 28, 1), activation='relu'))
-    # 또 하나를 추가합니다:
+    model.add(Conv2D(filters=64, kernel_size = (3,3), activation="relu"))
+    model.add(tf.keras.layers.MaxPooling2D(pool_size=2))
+    model.add(BatchNormalization())
+    model.add(Conv2D(filters=128, kernel_size = (3,3), activation="relu"))
+    model.add(Conv2D(filters=128, kernel_size = (3,3), activation="relu"))
+    model.add(MaxPooling2D(pool_size=(2,2)))
+    
+    model.add(BatchNormalization())    
+    model.add(Conv2D(filters=256, kernel_size = (3,3), activation="relu"))
+    model.add(MaxPooling2D(pool_size=(2,2)))
+    
     model.add(Flatten())
-    # 10개의 출력 유닛을 가진 소프트맥스 층을 추가합니다:
-    model.add(Dense(128, activation='relu'))
-    model.add(Dense(10, activation='softmax'))
+    model.add(BatchNormalization())
+    model.add(Dense(512,activation="relu"))
+        
+    model.add(Dense(10,activation="softmax"))
     model.compile(optimizer='adam',
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])

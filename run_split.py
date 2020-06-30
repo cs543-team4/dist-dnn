@@ -7,6 +7,7 @@ import argparse
 import inference_service_pb2
 import inference_service_pb2_grpc
 import mnist
+from config import Config
 
 NUM_OF_LAYERS = 4
 DEFAULT_POINT = [0, 1]
@@ -21,7 +22,7 @@ test_loss = tf.keras.metrics.Mean(name='test_loss')
 test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
     name='test_accuracy')
 
-connected_server = [('localhost', 50051), ('localhost', 50052), ('localhost', 50053)]
+connected_server = [[('172.19.0.2', 50051), ('172.19.0.3', 50051), ('172.19.0.4', 50051)]]
 
 def get_best_split_point(server_times):
     number_of_layers = len(server_times[0][0])
